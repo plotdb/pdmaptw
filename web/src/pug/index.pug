@@ -48,8 +48,7 @@ html
             lc = {blah: 0}
             bbox = topojson.bbox(json)
             path = d3.geoPath().projection(twmap.projection)
-            features = topojson.feature(json, json.objects["out"]).features
-            console.log topojson.bbox(json)
+            features = topojson.feature(json, json.objects["twmap"]).features
             d3.select root .select "svg g"
               .selectAll \path
               .data features
@@ -58,7 +57,7 @@ html
                 .attr \d, path
                 .attr \fill, -> d3.interpolateSpectral Math.random!
                 .attr \stroke, -> \#000
-                .attr \stroke-width, -> 0.005
+                .attr \stroke-width, -> 0.000
             g = ld$.find root, 'g', 0
             bcr = root.getBoundingClientRect!
             bbox = g.getBBox!
@@ -66,7 +65,6 @@ html
             padding = 20
             scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
             [w,h] = [width / 2, height / 2]
-            console.log scale
             g.setAttribute(
               \transform
               "translate(#w,#h) scale(#scale) translate(#{-bbox.x - bbox.width/2},#{-bbox.y - bbox.height/2})"

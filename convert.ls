@@ -22,13 +22,23 @@ proc = (lv) ->
         {encoding: 'utf-8'}
       )
     .then (divisions) ->
-      topo = topojson.topology {out: divisions}, 1e5
+      meta = county: {}, town: {}, village: {}
+      divisions.features.map ->
+        p = it.properties
+        it.properties = q = {}
+        meta.county[p.COUNTYID] = {c: p.COUNTYCODE, n: p.COUNTYNAME}
+        meta.town[p.TOWNID] = {c: p.TOWNCODE, n: p.TOWNNAME}
+        meta.village[p.VILLCODE] = {n: p.VILLNAME}
+        if p.COUNTYID => q <<< {tid: p.COUNTYID}
+        if p.TOWNID => q <<< {cid: p.TOWNID}
+        if p.VILLCODE => q <<< {vcode: p.VILLCODE}
+      topo = topojson.topology {twmap: divisions}, 1e5
       topo = topojson.presimplify topo
       topo = topojson.quantize(
         topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv]), 1e5
       )
-      fs.write-file-sync "web/static/assets/topojson/#lv.topo.json", JSON.stringify(topo)
       fs.write-file-sync "dist/#lv.topo.json", JSON.stringify(topo)
+      fs.write-file-sync "dist/#lv.meta.json", JSON.stringify(meta)
 
 proc \county
   .then -> proc \town

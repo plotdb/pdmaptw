@@ -32,6 +32,34 @@ For a sample usage in frontend:
 then open http://localhost:3000/
 
 
+
+## meta.json structure
+
+for keeping topojson metadata. lookup with cid/tid/vcode.
+
+```
+   {
+     county: {
+      "county-id": {c: "county-code", n: "county-name"}, ...
+     },
+     town: {
+      "town-id": {c: "town-code", n: "town-name"}, ...
+     },
+     village: {
+      "village-code": {n: "village-name"}, ...
+     }
+   }
+```
+
+properties in topojson is then converted to: 
+
+```
+    { cid: "county-id", tid: "town-id", vcode: "village-code" }
+```
+
+each field exists only when applicable.
+
+
 ## 詳細產製流程
 
  * 取得 shp files. 

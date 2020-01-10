@@ -23,14 +23,13 @@ proc = function(root, fn, name){
     };
     bbox = topojson.bbox(json);
     path = d3.geoPath().projection(twmap.projection);
-    features = topojson.feature(json, json.objects["out"]).features;
-    console.log(topojson.bbox(json));
+    features = topojson.feature(json, json.objects["twmap"]).features;
     d3.select(root).select("svg g").selectAll('path').data(features).enter().append('path').attr('d', path).attr('fill', function(){
       return d3.interpolateSpectral(Math.random());
     }).attr('stroke', function(){
       return '#000';
     }).attr('stroke-width', function(){
-      return 0.005;
+      return 0.000;
     });
     g = ld$.find(root, 'g', 0);
     bcr = root.getBoundingClientRect();
@@ -39,7 +38,6 @@ proc = function(root, fn, name){
     padding = 20;
     scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height);
     ref$ = [width / 2, height / 2], w = ref$[0], h = ref$[1];
-    console.log(scale);
     g.setAttribute('transform', "translate(" + w + "," + h + ") scale(" + scale + ") translate(" + (-bbox.x - bbox.width / 2) + "," + (-bbox.y - bbox.height / 2) + ")");
     ld$.find(document, "[ld=count][data-name=" + name, 0).innerText = features.length;
     t3 = Date.now();
