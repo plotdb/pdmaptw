@@ -5,7 +5,7 @@
       lat = y * 180 / Math.PI
       lng = x * 180 / Math.PI
       if lng > 123 and lat > 25.7 => lng -= 1.5; lat -= 0.5  # diaoyutai
-      else if lat < 23.82 and lng < 119.7 => lng += 0.2      # penghu
+      else if lat < 23.82 and lng < 119.9 => lng += 0.2      # penghu
       else if lat > 25.7 and lng < 122 => lat -= 1.1         # mazu
       else if lng < 119.4 => lng += 1.5                      # kinmen
       else if lat > 25.4 and lng > 122 => lat -= 1 # pengjia islet

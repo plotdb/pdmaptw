@@ -5,9 +5,9 @@ d3 <<< d3-geo-projection
 
 opt = do
   # mw is for filtering. this will remove small polygons.
-  mw: county: 0.0001, town: 0.0001, village: 0.00001
+  mw: county: 0.0001, town: 0.0001, village: 0.000001
   # this is for polygon simplification. will wipe out some polygons if too simple
-  w: county: 0.0001, town: 0.0001, village: 0.00001
+  w: county: 0.0001, town: 0.0001, village: 0.000001
 
 proc = (lv) ->
   Promise.resolve!
@@ -23,15 +23,17 @@ proc = (lv) ->
       )
     .then (divisions) ->
       meta = county: {}, town: {}, village: {}
-      divisions.features.map ->
-        p = it.properties
-        it.properties = q = {}
-        meta.county[p.COUNTYID] = {c: p.COUNTYCODE, n: p.COUNTYNAME}
-        meta.town[p.TOWNID] = {c: p.TOWNCODE, n: p.TOWNNAME}
-        meta.village[p.VILLCODE] = {n: p.VILLNAME}
-        if p.COUNTYID => q <<< {tid: p.COUNTYID}
-        if p.TOWNID => q <<< {cid: p.TOWNID}
-        if p.VILLCODE => q <<< {vcode: p.VILLCODE}
+      meta = name: {}
+      divisions.features.map (d) -> <[COUNTYNAME TOWNNAME VILLNAME]>.map ->
+        if d.properties[it] => meta.name[that] = 1
+      meta.name = [k for k of meta.name]
+      divisions.features.map (d) ->
+        p = d.properties
+        d.properties = q = {}
+        [<[c COUNTYNAME]> <[t TOWNNAME]> <[v VILLNAME]>].map -> 
+          v = meta.name.indexOf p[it.1]
+          if v >= 0 => q[it.0] = v
+
       topo = topojson.topology {twmap: divisions}, 1e5
       topo = topojson.presimplify topo
       topo = topojson.quantize(

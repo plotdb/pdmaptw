@@ -9,7 +9,7 @@
       if (lng > 123 && lat > 25.7) {
         lng -= 1.5;
         lat -= 0.5;
-      } else if (lat < 23.82 && lng < 119.7) {
+      } else if (lat < 23.82 && lng < 119.9) {
         lng += 0.2;
       } else if (lat > 25.7 && lng < 122) {
         lat -= 1.1;
