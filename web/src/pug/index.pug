@@ -9,40 +9,47 @@ html
       .col-md
         .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
         .text-center
-          span Path Count: 
-          span(ld="county-count")
+          div Path Count: #[span(ld="count",data-name="county")]
+          div(ld="elapsed",data-name="county")
+          div(ld="size",data-name="county")
       .col-md
         .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
         .text-center
-          span Path Count: 
-          span(ld="town-count")
+          div Path Count: #[span(ld="count",data-name="town")]
+          div(ld="elapsed",data-name="town")
+          div(ld="size",data-name="town")
       .col-md
         .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
         .text-center
-          span Path Count: 
-          span(ld="village-count")
-    +script("/assets/lib/ldui/ldui.min.js")
+          div Path Count: #[span(ld="count",data-name="village")]
+          div(ld="elapsed",data-name="village")
+          div(ld="size",data-name="village")
+    +script("assets/lib/ldui/ldui.min.js")
     +script("https://d3js.org/d3.v4.js")
     +script("https://d3js.org/topojson.v2.min.js")
-
     +script("https://d3js.org/d3-color.v1.min.js")
     +script("https://d3js.org/d3-interpolate.v1.min.js")
     +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
+    +script("assets/lib/twmap/twmap.min.js")
 
     script: :lsc
       view = new ldView do
         root: document.body
         handler: do
-          "county-count": (->)
-          "town-count": (->)
-          "village-count": (->)
+          "count": (->)
+          "elapsed": (->)
 
       proc = (root, fn, name) ->
+        t1 = Date.now!
         ld$.fetch fn, {method: \GET}, {type: \json}
           .then (json) ->
-            projection = d3.geoMercator!
-            path = d3.geoPath().projection(projection)
+            size = JSON.stringify(json).length
+            t2 = Date.now!
+            lc = {blah: 0}
+            bbox = topojson.bbox(json)
+            path = d3.geoPath().projection(twmap.projection)
             features = topojson.feature(json, json.objects["out"]).features
+            console.log topojson.bbox(json)
             d3.select root .select "svg g"
               .selectAll \path
               .data features
@@ -59,13 +66,20 @@ html
             padding = 20
             scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
             [w,h] = [width / 2, height / 2]
+            console.log scale
             g.setAttribute(
               \transform
               "translate(#w,#h) scale(#scale) translate(#{-bbox.x - bbox.width/2},#{-bbox.y - bbox.height/2})"
             )
-            view.get("#{name}-count").innerText = features.length
+            ld$.find(document,"[ld=count][data-name=#{name}",0).innerText = features.length
+            t3 = Date.now!
+            ld$.find(document,"[ld=elapsed][data-name=#{name}",0).innerText = 
+              "fetch: #{t2 - t1}ms / render: #{t3 - t2}ms"
+            ld$.find(document,"[ld=size][data-name=#{name}",0).innerText = "size: #{Math.round(size / 1024)}KB"
+
+
 
       svgs = ld$.find document.body, \svg
-      proc svgs.0, 'assets/topojson/county.topo.json', \county
-      proc svgs.1, 'assets/topojson/town.topo.json', \town
-      proc svgs.2, 'assets/topojson/village.topo.json', \village
+      proc svgs.0, 'assets/lib/twmap/county.topo.json', \county
+      proc svgs.1, 'assets/lib/twmap/town.topo.json', \town
+      proc svgs.2, 'assets/lib/twmap/village.topo.json', \village

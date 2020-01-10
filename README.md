@@ -14,11 +14,14 @@ Alternatively, execute the script manually:
 
 ```
     ./fetch
+    lsc convert.ls
     ./build
 ```
 
 `fetch` will download and unzip shp files from government website to download folder.
-`build` will process all shp files and convert them to geojson, topojson and sample svg.
+`convert.ls` will process all shp files and convert them to topojson.
+`build` build the utility js `twmap` for frontend rendering.
+`tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg. for getting topojson, simply use `convert.ls` directly.
 
 For a sample usage in frontend:
 
