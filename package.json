@@ -1,20 +1,20 @@
 {
   "author": "zbryikt",
-  "name": "taiwan-map",
+  "name": "taiwanmap",
   "license": "MIT",
   "description": "Taiwan Map",
   "version": "0.0.1",
-  "homepage": "https://github.com/plotdb/taiwan-map",
+  "homepage": "https://github.com/plotdb/taiwanmap",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plotdb/taiwan-map"
+    "url": "https://github.com/plotdb/taiwanmap"
   },
   "engines": {
     "node": ">=0.12.6",
     "npm": ">=1.2.2"
   },
   "scripts": {
-    "start": "cd web; ../node_modules/.bin/lsc ../node_modules/template/server.ls"
+    "start": "cd web; ../node_modules/.bin/lsc ../node_modules/template/server.ls",
     "build": "./fetch; ./build"
   },
   "devDependencies": {
