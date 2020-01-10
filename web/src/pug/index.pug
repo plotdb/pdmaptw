@@ -1,0 +1,71 @@
+doctype html
+html
+  include /../../static/assets/lib/ldui/pug/ldui.pug
+  head
+    +css("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+    +css("/assets/lib/ldui/ldui.min.css")
+  body.p-4
+    .row(style="height:500px")
+      .col-md
+        .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
+        .text-center
+          span Path Count: 
+          span(ld="county-count")
+      .col-md
+        .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
+        .text-center
+          span Path Count: 
+          span(ld="town-count")
+      .col-md
+        .aspect-ratio.w-100(style="padding-top:120%"): svg.border.bg-light.shadow.w-100.h-100: g
+        .text-center
+          span Path Count: 
+          span(ld="village-count")
+    +script("/assets/lib/ldui/ldui.min.js")
+    +script("https://d3js.org/d3.v4.js")
+    +script("https://d3js.org/topojson.v2.min.js")
+
+    +script("https://d3js.org/d3-color.v1.min.js")
+    +script("https://d3js.org/d3-interpolate.v1.min.js")
+    +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
+
+    script: :lsc
+      view = new ldView do
+        root: document.body
+        handler: do
+          "county-count": (->)
+          "town-count": (->)
+          "village-count": (->)
+
+      proc = (root, fn, name) ->
+        ld$.fetch fn, {method: \GET}, {type: \json}
+          .then (json) ->
+            projection = d3.geoMercator!
+            path = d3.geoPath().projection(projection)
+            features = topojson.feature(json, json.objects["out"]).features
+            d3.select root .select "svg g"
+              .selectAll \path
+              .data features
+              .enter!
+                .append \path
+                .attr \d, path
+                .attr \fill, -> d3.interpolateSpectral Math.random!
+                .attr \stroke, -> \#000
+                .attr \stroke-width, -> 0.005
+            g = ld$.find root, 'g', 0
+            bcr = root.getBoundingClientRect!
+            bbox = g.getBBox!
+            [width,height] = [bcr.width,bcr.height]
+            padding = 20
+            scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
+            [w,h] = [width / 2, height / 2]
+            g.setAttribute(
+              \transform
+              "translate(#w,#h) scale(#scale) translate(#{-bbox.x - bbox.width/2},#{-bbox.y - bbox.height/2})"
+            )
+            view.get("#{name}-count").innerText = features.length
+
+      svgs = ld$.find document.body, \svg
+      proc svgs.0, 'assets/topojson/county.topo.json', \county
+      proc svgs.1, 'assets/topojson/town.topo.json', \town
+      proc svgs.2, 'assets/topojson/village.topo.json', \village
