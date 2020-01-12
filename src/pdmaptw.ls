@@ -1,5 +1,5 @@
 (->
-  twmap = do
+  pdmaptw = do
     # Projection for TPKMD ( Tai/Peng/Kin/Ma/Diaoyutai )
     projection: d3.geoProjection (x,y) ->
       lat = y * 180 / Math.PI
@@ -18,6 +18,6 @@
       y = lat * Math.PI / 180
       return [x, y]
 
-  if window? => window.twmap = twmap
-  if module? => module.exports = twmap
+  if window? => window.maptw = pdmaptw
+  if module? => module.exports = pdmaptw
 )!

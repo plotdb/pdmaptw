@@ -1,13 +1,13 @@
 {
   "author": "zbryikt",
-  "name": "taiwanmap",
+  "name": "pdmap.tw",
   "license": "MIT",
   "description": "Taiwan Map",
   "version": "0.0.1",
-  "homepage": "https://github.com/plotdb/taiwanmap",
+  "homepage": "https://github.com/plotdb/pdmap.tw",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plotdb/taiwanmap"
+    "url": "https://github.com/plotdb/pdmap.tw"
   },
   "engines": {
     "node": ">=0.12.6",

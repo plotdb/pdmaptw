@@ -34,7 +34,7 @@ proc = (lv) ->
           v = meta.name.indexOf p[it.1]
           if v >= 0 => q[it.0] = v
 
-      topo = topojson.topology {twmap: divisions}, 1e5
+      topo = topojson.topology {pdmaptw: divisions}, 1e5
       topo = topojson.presimplify topo
       topo = topojson.quantize(
         topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv]), 1e5

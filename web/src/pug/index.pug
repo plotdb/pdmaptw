@@ -32,7 +32,7 @@ html
     +script("https://d3js.org/d3-color.v1.min.js")
     +script("https://d3js.org/d3-interpolate.v1.min.js")
     +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
-    +script("assets/lib/twmap/twmap.min.js")
+    +script("assets/lib/pdmaptw/pdmaptw.min.js")
     +script("js/data.js")
 
     script: :lsc
@@ -46,8 +46,8 @@ html
       proc = (root, name) ->
         lc = {}
         t1 = Date.now!
-        topofn = "assets/lib/twmap/#name.topo.json"
-        metafn = "assets/lib/twmap/#name.meta.json"
+        topofn = "assets/lib/pdmaptw/#name.topo.json"
+        metafn = "assets/lib/pdmaptw/#name.meta.json"
         ld$.fetch topofn, {method: \GET}, {type: \json}
           .then (topo) ->
             lc.topo = topo
@@ -57,8 +57,8 @@ html
             size = JSON.stringify(lc.topo).length
             t2 = Date.now!
             bbox = topojson.bbox(lc.topo)
-            path = d3.geoPath().projection(twmap.projection)
-            features = topojson.feature(lc.topo, lc.topo.objects["twmap"]).features
+            path = d3.geoPath().projection(pdmaptw.projection)
+            features = topojson.feature(lc.topo, lc.topo.objects["pdmaptw"]).features
             hash = {}
             data.map (d) -> hash[[0 til (d.length - 1)].map(->d[it]).filter(->it).join('')] = d[* - 1]
             features.map (f) ->

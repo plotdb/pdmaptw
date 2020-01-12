@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 mkdir -p dist
-echo "build src/twmap.ls -> dist/twmap.js ..."
-./node_modules/.bin/lsc -cbp src/twmap.ls > dist/twmap.js
-echo "minifying twmap.js ..."
-./node_modules/.bin/uglifyjs dist/twmap.js > dist/twmap.min.js
+echo "build src/pdmaptw.ls -> dist/pdmaptw.js ..."
+./node_modules/.bin/lsc -cbp src/pdmaptw.ls > dist/pdmaptw.js
+echo "minifying pdmaptw.js ..."
+./node_modules/.bin/uglifyjs dist/pdmaptw.js > dist/pdmaptw.min.js
 echo "deploy into local web ..."
-mkdir -p web/static/assets/lib/twmap/
-cp -R dist/* web/static/assets/lib/twmap/
+mkdir -p web/static/assets/lib/pdmaptw/
+cp -R dist/* web/static/assets/lib/pdmaptw/
 echo "done."
