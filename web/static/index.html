@@ -55,6 +55,9 @@ proc = function(root, name){
       }).join('');
       return f.properties.value = hash[n] || 0;
     });
+    features = features.filter(function(f){
+      return path.area(f) > 0.00001;
+    });
     d3.select(root).select("svg g").selectAll('path').data(features).enter().append('path').attr('d', path).attr('fill', function(it){
       var v;
       v = it.properties.tid === 'T'

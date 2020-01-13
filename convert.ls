@@ -7,9 +7,9 @@ d3 <<< d3-geo-projection
 # be sure to test with the win firefox and major browsers before actually changing these params.
 opt = do
   # mw is for filtering. this will remove small polygons.
-  mw: county: 0.0001, town: 0.00005, village: 0.000001
+  mw: county: 0.0001, town: 0.0001, village: 0.000001
   # this is for polygon simplification. will wipe out some polygons if too simple
-  w: county: 0.0001, town: 0.0001, village: 0.000001
+  w: county: 0.0001, town: 0.00004, village: 0.00001
 
 proc = (lv) ->
   Promise.resolve!

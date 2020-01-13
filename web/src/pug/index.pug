@@ -64,6 +64,7 @@ html
             features.map (f) ->
               f.properties.name = n = <[c t v]>.map((d) -> meta.name[f.properties[d]]).filter(->it).join('')
               f.properties.value = hash[n] or 0
+            features = features.filter (f) -> path.area(f) > 0.00001
 
             d3.select root .select "svg g"
               .selectAll \path
