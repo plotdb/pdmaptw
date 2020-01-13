@@ -3,9 +3,11 @@ require! <[fs shapefile topojson d3-geo d3-geo-projection]>
 d3 = {} <<< d3-geo
 d3 <<< d3-geo-projection
 
+# there is a know issue in Windows Firefox that create a path in abnormal position if we over-simplify.
+# be sure to test with the win firefox and major browsers before actually changing these params.
 opt = do
   # mw is for filtering. this will remove small polygons.
-  mw: county: 0.0001, town: 0.0001, village: 0.000001
+  mw: county: 0.0001, town: 0.00005, village: 0.000001
   # this is for polygon simplification. will wipe out some polygons if too simple
   w: county: 0.0001, town: 0.0001, village: 0.000001
 
