@@ -1,8 +1,47 @@
-# dbmap.tw
+# pdmap.tw
 
-台灣 ( "中華民國自由地區"，含台、澎、金、馬 ) 縣市、鄉鎮、村里界圖。
+台灣 ( "中華民國自由地區"，含台、澎、金、馬 ) 縣市、鄉鎮、村里界圖。含前端繪圖函式 ( 基於 d3.js v4 )
 
-## usage
+
+## 前端源碼
+
+### Usage
+
+include required js file:
+
+```
+    <script src="<path-to-pdmaptw.js>"></script>
+```
+
+
+create map object:
+
+```
+    var obj = pdmaptw.create(opt);
+```
+
+options:
+
+ * root: container for this map
+ * type: 'county', 'town' or 'village'.
+ * popup({evt, data}): function for handling and updating popup. optional. arguments:
+   - evt: event for mouseover.
+   - data: not null if mouseover path element of map. usually a topojson object with `properties` member:
+     - properties.name - name for this geographic block, like "高雄市左營區"
+
+
+methods of map object:
+ * init - map initialization, include data fetching / path elements creating.
+ * fit - fit map to the size of container.
+
+Additional pdmaptw methods:
+ * projection - d3js GeoProjection for 台澎金馬地區, as compact as possible.
+ * normalize - name normalization, e.g., replace '臺' with '台'.
+
+
+## 地圖檔建置
+
+### Usage
 
 Fetch data and build:
 
@@ -33,7 +72,7 @@ then open http://localhost:3000/
 
 
 
-## meta.json structure
+### meta.json structure
 
 for keeping topojson metadata. lookup with cid/tid/vcode.
 
@@ -97,3 +136,8 @@ each field exists only when applicable.
      - topomerge -k 'd.id.slice(0,3)' counties=tracts < <topojson3> > <topojson4>
 
  * geojson to topojson
+
+## License
+
+Source code: MIT
+
