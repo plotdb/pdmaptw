@@ -17,8 +17,8 @@
       x = lng * Math.PI / 180
       y = lat * Math.PI / 180
       return [x, y]
-    pdmaptw.create: (opt = {}) -> new inst opt
-    pdmaptw.normalize: -> it.replace /臺/g, '台'
+    create: (opt = {}) -> new inst opt
+    normalize: -> it.replace /臺/g, '台'
 
   inst = (opt = {}) ->
     @root = if typeof(opt.root) == typeof('') => document.querySelector(opt.root) else opt.root
@@ -33,7 +33,6 @@
         if n.nodeType != 1 => return
         if !(data = d3.select(n).datum!) => return
         if popup? => popup {evt: e, data}
-
       ld$.fetch "assets/lib/pdmap.tw/#type.topo.json", {method: \GET}, {type: \json}
         .then (topo) ~>
           @lc.topo = topo
