@@ -33,10 +33,10 @@
         if n.nodeType != 1 => return
         if !(data = d3.select(n).datum!) => return
         if popup? => popup {evt: e, data}
-      ld$.fetch "assets/lib/pdmap.tw/#type.topo.json", {method: \GET}, {type: \json}
+      ld$.fetch "/assets/lib/pdmaptw/#type.topo.json", {method: \GET}, {type: \json}
         .then (topo) ~>
           @lc.topo = topo
-          ld$.fetch "assets/lib/pdmap.tw/#type.meta.json", {method: \GET}, {type: \json}
+          ld$.fetch "/assets/lib/pdmaptw/#type.meta.json", {method: \GET}, {type: \json}
         .then (meta) ~>
           @lc.meta = meta
           @lc.features = features = topojson.feature(@lc.topo, @lc.topo.objects["pdmaptw"]).features

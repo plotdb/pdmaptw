@@ -78,13 +78,13 @@
           });
         }
       });
-      return ld$.fetch("assets/lib/pdmap.tw/" + type + ".topo.json", {
+      return ld$.fetch("/assets/lib/pdmaptw/" + type + ".topo.json", {
         method: 'GET'
       }, {
         type: 'json'
       }).then(function(topo){
         this$.lc.topo = topo;
-        return ld$.fetch("assets/lib/pdmap.tw/" + type + ".meta.json", {
+        return ld$.fetch("/assets/lib/pdmaptw/" + type + ".meta.json", {
           method: 'GET'
         }, {
           type: 'json'
