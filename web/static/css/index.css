@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'ldi';
+  font-weight: normal;
+  font-style: normal;
+  src: url("/assets/lib/ldui/fonts/ldi.ttf?x74ll4") format('truetype'), url("/assets/lib/ldui/fonts/ldi.woff?x74ll4") format('woff'), url("/assets/lib/ldui/fonts/ldi.svg?x74ll4#ldi") format('svg');
+}

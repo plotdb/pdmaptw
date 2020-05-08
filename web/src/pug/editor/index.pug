@@ -1,0 +1,34 @@
+doctype html
+include /../../static/assets/lib/ldui/pug/ldui.pug
+html
+  head
+    +css("https://cdn.jsdelivr.net/npm/handsontable@6.2.2/dist/handsontable.min.css")
+    +css("/assets/lib/bootstrap/4.3.1/css/bootstrap.min.css")
+    +css("/assets/lib/ldui/ldui.min.css")
+    +css("/css/index.css")
+    style(type="text/css"): :stylus
+      html,body { width: 100%; height: 100% }
+  body
+    .ldcv.md: .base(style="height:640px"): .inner
+      +ldPalettePicker
+    .w-100.h-100.d-flex.flex-column
+      .px-4.pt-4
+        .btn.btn-outline-dark.mr-2(ld="palette") Palette
+        .btn.btn-outline-dark.mr-2(ld="random") Random Data
+      .d-flex.flex-grow-1
+        .h-100.w-50.position-relative.p-4
+          .w-100.h-100.border.shadow.rounded
+            #sheet.w-100.h-100(style="overflow:scroll")
+        .flex-grow-1.w-50.ml-1
+          .p-4.h-100: .border.shadow.rounded.p-4.h-100: #map.w-100.h-100
+
+    +script("https://cdn.jsdelivr.net/npm/handsontable@6.2.2/dist/handsontable.min.js")
+    +script("/assets/lib/ldui/ldui.min.js")
+    +script("https://d3js.org/d3.v4.js")
+    +script("https://d3js.org/topojson.v2.min.js")
+    +script("https://d3js.org/d3-color.v1.min.js")
+    +script("https://d3js.org/d3-interpolate.v1.min.js")
+    +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
+
+    +script("/assets/lib/pdmaptw/pdmaptw.min.js")
+    +script("/js/editor/index.js")
