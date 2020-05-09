@@ -5,13 +5,14 @@
     root: '#map',
     type: 'town'
   });
-  data = [["縣市", "鄉鎮"]];
+  data = [["縣市", "鄉鎮", "數值"]];
   lc = {
+    hover: {},
     scale: d3.interpolateSpectral
   };
   namemap = {};
   return map.init().then(function(){
-    var n, render, hot, ldpp, updatePalette, view;
+    var n, debouncedViewDownload, render, sortOrder, sortData, hot, randomData, ldpp, updatePalette, pals, svg, view, popup, popupview, fadePopup;
     map.fit();
     n = map.lc.meta.name;
     map.lc.features.map(function(it){
@@ -20,30 +21,65 @@
       data.push([c, t]);
       return (namemap[c] || (namemap[c] = {}))[t] = it;
     });
+    debouncedViewDownload = debounce(350, function(){
+      if (typeof view != 'undefined' && view !== null) {
+        return view.render('download');
+      }
+    });
     render = function(){
-      return d3.select(map.root).selectAll('path').attr('fill', function(it){
+      d3.select(map.root).selectAll('path').transition().duration(350).attr('fill', function(it){
         var val;
         val = (it.properties.value - lc.min) / (lc.max - lc.min || 1);
         return lc.scale(val);
       });
+      return debouncedViewDownload();
     };
     render();
+    Handsontable.renderers.registerRenderer('myrenderer', function(instance, td, row, col, prop, value, cellProperties){
+      Handsontable.renderers.TextRenderer.apply(this, arguments);
+      if (row === 0) {
+        td.classList.add('head');
+      }
+      if (isNaN(value) || !value) {}
+    });
+    sortOrder = {};
+    sortData = function(idx, asc){
+      var head;
+      asc = asc
+        ? 1
+        : -1;
+      head = data.splice(0, 1)[0];
+      data.sort(function(a, b){
+        return asc * (a[idx] > b[idx]
+          ? 1
+          : a[idx] < b[idx] ? -1 : 0);
+      });
+      data.splice(0, 0, head);
+      return hot.render();
+    };
     hot = new Handsontable(sheet, {
       afterChange: function(){
+        var vals;
         data.map(function(it){
           if (namemap[it[0]]) {
             return namemap[it[0]][it[1]].properties.value = it[2];
           }
         });
-        lc.max = Math.max.apply(null, data.map(function(it){
+        vals = data.map(function(it){
           return it[2] || 0;
-        }));
-        lc.min = Math.min.apply(null, data.map(function(it){
-          return it[2] || 0;
-        }));
+        }).splice(1);
+        lc.max = Math.max.apply(null, vals);
+        lc.min = Math.min.apply(null, vals);
         return render();
       },
+      afterSelection: function(r1, c1, r2, c2){
+        if (!((r1 === r2 && r2 === 0) && c1 === c2 && c2 < 3)) {
+          return;
+        }
+        return sortData(c2, sortOrder[c2] = !sortOrder[c2]);
+      },
       data: data,
+      fixedRowsTop: 1,
       rowHeaders: true,
       colHeaders: true,
       filters: true,
@@ -51,14 +87,52 @@
       stretchH: 'all',
       rowHeights: 25,
       minRows: 50,
-      minCols: 15
+      minCols: 15,
+      cells: function(row, col){
+        var cellProperties;
+        cellProperties = {};
+        cellProperties.renderer = 'myrenderer';
+        if (row === 0) {
+          cellProperties.readOnly = true;
+        }
+        return cellProperties;
+      },
+      customBorders: [{
+        range: {
+          from: {
+            row: 0,
+            col: 0
+          },
+          to: {
+            row: 0,
+            col: 99
+          }
+        },
+        bottom: {
+          width: 2,
+          color: '#000'
+        }
+      }]
     });
+    randomData = function(){
+      data.map(function(d, i){
+        if (i > 0) {
+          return d[2] = Math.round(Math.random() * 100);
+        }
+      });
+      hot.loadData(data);
+      return hot.render();
+    };
+    randomData();
     ldpp = ldPalettePicker.init({
-      ldcv: {}
+      ldcv: {},
+      pals: ldPalettePicker.get("loadingio")
     });
-    console.log(ldpp[0].get);
     updatePalette = function(ret){
       var pal, d;
+      if (!ret) {
+        return;
+      }
       pal = ret.colors.map(function(it){
         return ldColor.hex(it);
       });
@@ -68,11 +142,26 @@
       lc.scale = d3.scaleLinear().domain(d).range(pal).interpolate(d3.interpolateHcl);
       return render();
     };
-    ldpp[0].get().then(function(ret){
-      return updatePalette(ret);
+    pals = ldPalettePicker.get('loadingio').filter(function(it){
+      return it.colos.length > 3;
     });
-    return view = new ldView({
+    updatePalette(pals[Math.floor(pals.length * Math.random())]);
+    svg = ld$.find(document.body, 'svg', 0);
+    view = new ldView({
       root: document.body,
+      handler: {
+        download: function(arg$){
+          var node, url;
+          node = arg$.node;
+          svg.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+          url = URL.createObjectURL(new Blob([svg.outerHTML], {
+            type: 'text/svg+xml'
+          }));
+          node.setAttribute('href', url);
+          node.setAttribute('download', 'map.svg');
+          return node.classList.remove('disabled');
+        }
+      },
       action: {
         click: {
           palette: function(arg$){
@@ -85,14 +174,67 @@
           random: function(arg$){
             var node;
             node = arg$.node;
-            data.map(function(it){
-              return it[2] = Math.round(Math.random() * 100);
-            });
-            hot.loadData(data);
-            return hot.render();
+            return randomData();
           }
         }
       }
+    });
+    popup = ld$.find(document.body, '#popup', 0);
+    popupview = new ldView({
+      root: popup,
+      handler: {
+        name: function(arg$){
+          var node;
+          node = arg$.node;
+          return node.innerText = lc.hover.name || '';
+        },
+        value: function(arg$){
+          var node;
+          node = arg$.node;
+          return node.innerText = lc.hover.value;
+        }
+      }
+    });
+    fadePopup = debounce(2000, function(){
+      return popup.classList.add('ld', 'ld-fade-out');
+    });
+    return svg.addEventListener('mouseover', function(evt){
+      var d, c, t, row, v, pbox, bbox, ref$, mx, my, dx, dy, x, y;
+      if (!(d = d3.select(evt.target).datum())) {
+        return;
+      }
+      c = map.lc.meta.name[d.properties.c];
+      t = map.lc.meta.name[d.properties.t];
+      if (!(row = data.filter(function(it){
+        return it[0] === c && it[1] === t;
+      })[0])) {
+        return;
+      }
+      v = row[2];
+      lc.hover = {
+        name: c + "" + t,
+        value: v
+      };
+      popupview.render();
+      pbox = popup.parentNode.getBoundingClientRect();
+      bbox = popup.getBoundingClientRect();
+      ref$ = [evt.clientX - pbox.x, evt.clientY - pbox.y], mx = ref$[0], my = ref$[1];
+      dx = (mx < pbox.width / 2
+        ? 1
+        : -1) * ((ref$ = pbox.width * 0.05) > 20 ? ref$ : 20);
+      dy = (my < pbox.height / 2
+        ? 1
+        : -1) * ((ref$ = pbox.height * 0.05) > 20 ? ref$ : 20);
+      if (mx > pbox.width / 2) {
+        dx -= bbox.width;
+      }
+      if (my > pbox.height / 2) {
+        dy -= bbox.height;
+      }
+      ref$ = [mx + dx, my + dy], x = ref$[0], y = ref$[1];
+      popup.style.transform = "translate(" + x + "px, " + y + "px)";
+      popup.classList.remove('ld', 'ld-fade-out', 'd-none');
+      return fadePopup();
     });
   });
 })();
