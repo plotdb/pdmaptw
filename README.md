@@ -40,7 +40,7 @@ methods of map object:
  * fit - fit map to the size of container.
 
 Additional pdmaptw methods:
- * projection - d3js GeoProjection for 台澎金馬地區, as compact as possible.
+ * projection([lng, lat]) - d3js GeoProjection for 台澎金馬地區, as compact as possible.
  * normalize - name normalization, e.g., replace '臺' with '台'.
 
 
