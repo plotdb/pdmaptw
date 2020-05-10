@@ -15,13 +15,17 @@ html
       +ldPalettePicker
     .w-100.h-100.d-flex.flex-column
       .px-4.pt-4
+        .btn-group.mr-2
+          .btn.btn-outline-dark(ld="toggle") By Region
+          .btn.btn-outline-dark(ld="toggle") By LatLng
         .btn.btn-outline-dark.mr-2(ld="palette") Palette
         .btn.btn-outline-dark.mr-2(ld="random") Random Data
         a.btn.btn-outline-dark.mr-2.disabled(ld="download") Download
       .d-flex.flex-grow-1
-        .h-100.w-50.position-relative.p-4
-          .w-100.h-100.border.shadow.rounded
-            #sheet.w-100.h-100(style="overflow:scroll")
+        .h-100.w-50.p-4
+          .w-100.h-100.border.shadow.rounded.position-relative
+            #sheet.w-100.h-100.position-absolute(style="overflow:scroll")
+            #sheet2.w-100.h-100.position-absolute(style="overflow:scroll")
         .flex-grow-1.w-50.ml-1
           .p-4.h-100: .border.shadow.rounded.p-4.h-100.position-relative
             +scope("popup")#popup.shadow-sm.border.rounded.p-2.position-absolute.bg-white.d-none(
