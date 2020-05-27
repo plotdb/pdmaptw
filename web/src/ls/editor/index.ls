@@ -137,6 +137,16 @@
           palette: ({node}) ->
             vis.ldpp.0.get!then (ret) -> vis.set \palette, ret
           random: ({node}) -> dataset.random!
+          "config-btn": ->
+            view.get('config-panel').classList.toggle \invisible, false
+            view.get('config-panel').classList.toggle \z-float, true
+          "data-btn": ->
+            view.get('config-panel').classList.toggle \invisible, true
+            view.get('config-panel').classList.toggle \z-float, false
+          int: ({names}) ->
+            cfg.int = names.filter(-> it != 'int').0
+            view.get('int-name').innerText = cfg.int.toUpperCase!
+            vis.render!
 
 
   vis = do
@@ -145,12 +155,20 @@
     set: (name, value) ->
       if name != \palette => return
       if !value => return
-      pal = value.colors.map -> ldColor.hex(it)
-      d = pal.map (d,i) -> i / (pal.length - 1)
-      lc.scale = d3.scaleLinear!.domain(d).range pal .interpolate(d3.interpolateHcl)
+      cfg.pal = pal = value.colors.map -> ldColor.hex(it)
       vis.render!
 
     render: ->
+      if cfg.pal =>
+        d = cfg.pal.map (d,i) -> i / (cfg.pal.length - 1)
+        d = d.map (d,i) -> d * (cfg.coverage * 2) + (cfg.mid-point - cfg.coverage)
+        d = d.map -> it >? 0 <? 1
+        int-alg = if cfg.int == \hcl => d3.interpolateHcl
+        else if cfg.int == \hsl => d3.interpolateHsl
+        else d3.interpolateRgb
+
+        lc.scale = d3.scaleLinear!.domain(d).range cfg.pal .interpolate(int-alg)
+
       root = d3.select vis.map.root
       root.selectAll \path
         .transition!duration 350
@@ -161,7 +179,7 @@
         .data sheets.latlng.data
         .enter!append \circle
       root.select \g .selectAll \circle
-        .attr \fill, -> \#000
+        .attr \fill, -> ldColor.hex(cfg.bubble-color)
         .attr 'fill-opacity', 0.2
         .attr \cx, (d,i,n) -> 
           [lat,lng] = [d.0, d.1]
@@ -174,6 +192,32 @@
         .attr \r, (d,i) ->
           ret = if lc.rscale => lc.rscale(d.2) else 0
           return if isNaN(ret) => 0 else ret
+
+      if d =>
+        fsize = +(getComputedStyle(vis.map.root).fontSize.replace /[a-z]+$/,'')
+        root.select \g.legend .selectAll \g .data d .enter!append \g
+          .each (n,i) ->
+            d3.select(@).append \text
+            d3.select(@).append \rect
+        j = 0
+        root.select \g.legend .selectAll \g
+          .each (n,i) ->
+            j := if d[i + 1] == n => j else j + 1
+            d3.select(@)
+              .attr \transform, "translate(#{fsize * 0.75} #{fsize + j * fsize * 1.5})"
+              .style \display, if d[i + 1] == n => \none else \block
+            d3.select(@).select \text
+              .attr \x, \1.75em
+              .attr \y, \1em
+              .text Math.round((n * (lc.max - lc.min) + lc.min) * 100) / 100
+            d3.select(@).select \rect
+              .attr \x, 0
+              .attr \y, 0
+              .attr \width, \1.5em
+              .attr \height, \1em
+              .attr \fill, lc.scale(n)
+
+
       ctrl.download!
 
     init: ->
@@ -221,10 +265,32 @@
             popup.style.transform = "translate(#{x}px, #{y}px)"
             popup.classList.remove \ld, \ld-fade-out, \d-none
             fade-popup!
+          d3.select(svg).append \g .attr \class, 'legend'
           ldld.off!
+
+  cfg = {bubble-color: '#000', mid-point: 0.5, coverage: 0.5, int: \hcl}
 
   vis.init!
   ctrl.init!
+
+  ldrs = new ldSlider root: ld$.find('#slider-mid-point',0), min: 0, max: 100, step: 0.1, from: 50
+  ldrs.set 50
+  ldrs.on \change, ->
+    cfg.mid-point = it / 100
+    vis.render!
+
+  ldrs = new ldSlider root: ld$.find('#slider-coverage',0), min: 0, max: 100, step: 0.1, from: 50
+  ldrs.set 50
+  ldrs.on \change, ->
+    cfg.coverage = (it / 100) * 0.8  + 0.2
+    vis.render!
+
+  ldcp = new ldColorPicker picker
+  ldcp.on \change, ->
+    cfg.bubble-color = it
+    ld$.find('#picker div',0).style.background = ldColor.web(it)
+    vis.render!
+
 )!
 /*
   * customizable data path
