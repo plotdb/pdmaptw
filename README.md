@@ -33,6 +33,7 @@ options:
    - evt: event for mouseover.
    - data: not null if mouseover path element of map. usually a topojson object with `properties` member:
      - properties.name - name for this geographic block, like "高雄市左營區"
+ * baseurl: base path where data files are.
 
 
 methods of map object:

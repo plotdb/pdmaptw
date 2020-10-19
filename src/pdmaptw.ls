@@ -22,7 +22,7 @@
 
   inst = (opt = {}) ->
     @root = if typeof(opt.root) == typeof('') => document.querySelector(opt.root) else opt.root
-    @ <<< {lc: {}, type: opt.type, popup: opt.popup}
+    @ <<< {lc: {}, type: opt.type, popup: opt.popup, baseurl: opt.baseurl}
     @
 
   inst.prototype = Object.create(Object.prototype) <<< do
@@ -33,10 +33,10 @@
         if n.nodeType != 1 => return
         if !(data = d3.select(n).datum!) => return
         if popup? => popup {evt: e, data}
-      ld$.fetch "/assets/lib/pdmaptw/#type.topo.json", {method: \GET}, {type: \json}
+      ld$.fetch (@baseurl or "") + "/#type.topo.json", {method: \GET}, {type: \json}
         .then (topo) ~>
           @lc.topo = topo
-          ld$.fetch "/assets/lib/pdmaptw/#type.meta.json", {method: \GET}, {type: \json}
+          ld$.fetch (@baseurl or "") + "/#type.meta.json", {method: \GET}, {type: \json}
         .then (meta) ~>
           @lc.meta = meta
           @lc.features = features = topojson.feature(@lc.topo, @lc.topo.objects["pdmaptw"]).features

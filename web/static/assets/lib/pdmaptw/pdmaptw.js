@@ -50,6 +50,7 @@
     this.lc = {};
     this.type = opt.type;
     this.popup = opt.popup;
+    this.baseurl = opt.baseurl;
     return this;
   };
   inst.prototype = import$(Object.create(Object.prototype), {
@@ -78,13 +79,13 @@
           });
         }
       });
-      return ld$.fetch("/assets/lib/pdmaptw/" + type + ".topo.json", {
+      return ld$.fetch((this.baseurl || "") + ("/" + type + ".topo.json"), {
         method: 'GET'
       }, {
         type: 'json'
       }).then(function(topo){
         this$.lc.topo = topo;
-        return ld$.fetch("/assets/lib/pdmaptw/" + type + ".meta.json", {
+        return ld$.fetch((this$.baseurl || "") + ("/" + type + ".meta.json"), {
           method: 'GET'
         }, {
           type: 'json'

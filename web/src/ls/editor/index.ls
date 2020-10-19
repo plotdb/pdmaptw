@@ -221,7 +221,7 @@
       ctrl.download!
 
     init: ->
-      vis.map = map = pdmaptw.create { root: el.preview, type: 'town' }
+      vis.map = map = pdmaptw.create { root: el.preview, type: 'town', baseurl: "/assets/lib/pdmaptw" }
 
       map.init!
         .then ->
