@@ -91,7 +91,7 @@
           type: 'json'
         });
       }).then(function(meta){
-        var features, path;
+        var features, path, node;
         this$.lc.meta = meta;
         this$.lc.features = features = topojson.feature(this$.lc.topo, this$.lc.topo.objects["pdmaptw"]).features;
         features.map(function(it){
@@ -102,16 +102,21 @@
           return it.properties.name = pdmaptw.normalize(name);
         });
         this$.lc.path = path = d3.geoPath().projection(pdmaptw.projection);
-        return d3.select(root).append('svg').append('g').attr('class', 'pdmaptw').selectAll('path').data(features).enter().append('path').attr('d', path);
+        node = root.nodeName.toLowerCase() === 'svg'
+          ? d3.select(root)
+          : d3.select(root).append('svg');
+        return node.append('g').attr('class', 'pdmaptw').selectAll('path').data(features).enter().append('path').attr('d', path);
       });
     },
     fit: function(){
       var root, g, svg, bcr, bbox, ref$, width, height, padding, scale, w, h;
       root = this.root;
       g = ld$.find(root, 'g', 0);
-      svg = d3.select(root).select('svg');
-      svg.attr('width', '100%');
-      svg.attr('height', '100%');
+      if (root.nodeName.toLowerCase() !== 'svg') {
+        svg = d3.select(root).select('svg');
+        svg.attr('width', '100%');
+        svg.attr('height', '100%');
+      }
       bcr = root.getBoundingClientRect();
       bbox = g.getBBox();
       ref$ = [bcr.width, bcr.height], width = ref$[0], height = ref$[1];

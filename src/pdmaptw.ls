@@ -45,7 +45,8 @@
               .filter(->it) .join('')
             it.properties.name = pdmaptw.normalize name
           @lc.path = path = d3.geoPath().projection(pdmaptw.projection)
-          d3.select(root).append(\svg).append(\g)
+          node = if root.nodeName.toLowerCase! == \svg => d3.select(root) else d3.select(root).append(\svg)
+          node.append(\g)
             .attr \class, \pdmaptw
             .selectAll \path
             .data features
@@ -56,9 +57,10 @@
     fit: ->
       root = @root
       g = ld$.find root, \g, 0
-      svg = d3.select(root).select(\svg)
-      svg.attr \width, \100%
-      svg.attr \height, \100%
+      if root.nodeName.toLowerCase! != \svg =>
+        svg = d3.select(root).select(\svg)
+        svg.attr \width, \100%
+        svg.attr \height, \100%
       bcr = root.getBoundingClientRect!
       bbox = g.getBBox!
       [width,height] = [bcr.width,bcr.height]
