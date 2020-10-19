@@ -22,7 +22,7 @@
 
   inst = (opt = {}) ->
     @root = if typeof(opt.root) == typeof('') => document.querySelector(opt.root) else opt.root
-    @ <<< {lc: {}, type: opt.type, popup: opt.popup, baseurl: opt.baseurl}
+    @ <<< {lc: {}, type: opt.type, popup: opt.popup, baseurl: opt.baseurl, padding: opt.padding}
     @
 
   inst.prototype = Object.create(Object.prototype) <<< do
@@ -64,7 +64,7 @@
       bcr = root.getBoundingClientRect!
       bbox = g.getBBox!
       [width,height] = [bcr.width,bcr.height]
-      padding = 20
+      padding = if @padding? => @padding else 20
       scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
       [w,h] = [width / 2, height / 2]
       g.setAttribute(

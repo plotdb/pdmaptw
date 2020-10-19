@@ -51,6 +51,7 @@
     this.type = opt.type;
     this.popup = opt.popup;
     this.baseurl = opt.baseurl;
+    this.padding = opt.padding;
     return this;
   };
   inst.prototype = import$(Object.create(Object.prototype), {
@@ -120,7 +121,7 @@
       bcr = root.getBoundingClientRect();
       bbox = g.getBBox();
       ref$ = [bcr.width, bcr.height], width = ref$[0], height = ref$[1];
-      padding = 20;
+      padding = this.padding != null ? this.padding : 20;
       scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height);
       ref$ = [width / 2, height / 2], w = ref$[0], h = ref$[1];
       return g.setAttribute('transform', "translate(" + w + "," + h + ") scale(" + scale + ") translate(" + (-bbox.x - bbox.width / 2) + "," + (-bbox.y - bbox.height / 2) + ")");
