@@ -46,6 +46,7 @@
             it.properties.name = pdmaptw.normalize name
           @lc.path = path = d3.geoPath().projection(pdmaptw.projection)
           d3.select(root).append(\svg).append(\g)
+            .attr \class, \pdmaptw
             .selectAll \path
             .data features
             .enter!

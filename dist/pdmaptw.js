@@ -101,7 +101,7 @@
           return it.properties.name = pdmaptw.normalize(name);
         });
         this$.lc.path = path = d3.geoPath().projection(pdmaptw.projection);
-        return d3.select(root).append('svg').append('g').selectAll('path').data(features).enter().append('path').attr('d', path);
+        return d3.select(root).append('svg').append('g').attr('class', 'pdmaptw').selectAll('path').data(features).enter().append('path').attr('d', path);
       });
     },
     fit: function(){
