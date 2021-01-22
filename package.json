@@ -17,7 +17,7 @@
     "npm": ">=1.2.2"
   },
   "scripts": {
-    "deploy": "npx run deploy web/static",
+    "deploy": "npx deploy web/static",
     "start": "npx server -r web -o true",
     "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./build"
   },
