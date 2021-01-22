@@ -335,7 +335,8 @@
       var map;
       vis.map = map = pdmaptw.create({
         root: el.preview,
-        type: 'town'
+        type: 'town',
+        baseurl: "/assets/lib/pdmaptw"
       });
       return map.init().then(function(){
         var n, pals, svg, popup, popupview, fadePopup;
