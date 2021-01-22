@@ -32,7 +32,7 @@ html
     +script("https://d3js.org/d3-color.v1.min.js")
     +script("https://d3js.org/d3-interpolate.v1.min.js")
     +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
-    +script("assets/lib/pdmaptw/pdmaptw.min.js")
+    +script("assets/lib/pdmaptw/dev/pdmaptw.min.js")
     +script("js/data.js")
 
     script: :lsc
@@ -46,8 +46,8 @@ html
       proc = (root, name) ->
         lc = {}
         t1 = Date.now!
-        topofn = "assets/lib/pdmaptw/#name.topo.json"
-        metafn = "assets/lib/pdmaptw/#name.meta.json"
+        topofn = "assets/lib/pdmaptw/dev/#name.topo.json"
+        metafn = "assets/lib/pdmaptw/dev/#name.meta.json"
         ld$.fetch topofn, {method: \GET}, {type: \json}
           .then (topo) ->
             lc.topo = topo
@@ -126,10 +126,6 @@ html
               "translate(#{-bbox.x - bbox.width/2},#{-bbox.y - bbox.height/2})"
             ].join(' ')
           )
-
-
-
-
 
       svgs = ld$.find document.body, \svg
       proc svgs.0, \county

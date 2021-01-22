@@ -5,6 +5,6 @@ npx lsc -cp --no-header src/pdmaptw.ls > dist/pdmaptw.js
 echo "minifying pdmaptw.js ..."
 npx uglifyjs dist/pdmaptw.js > dist/pdmaptw.min.js
 echo "deploy into local web ..."
-mkdir -p web/static/assets/lib/pdmaptw/
-cp -R dist/* web/static/assets/lib/pdmaptw/
+mkdir -p web/static/assets/lib/pdmaptw/dev
+cp -R dist/* web/static/assets/lib/pdmaptw/dev
 echo "done."
