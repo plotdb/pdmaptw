@@ -4,6 +4,9 @@
   "license": "MIT",
   "description": "Taiwan Map",
   "version": "0.0.1",
+  "files": [
+    "dist/**/*"
+  ],
   "homepage": "https://github.com/plotdb/pdmap.tw",
   "repository": {
     "type": "git",
