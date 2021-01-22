@@ -17,18 +17,20 @@
     "npm": ">=1.2.2"
   },
   "scripts": {
-    "start": "cd web; ../node_modules/.bin/lsc ../node_modules/template/server.ls",
+    "deploy": "npx run deploy web/static",
+    "start": "npx server -r web -o true",
     "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./build"
   },
   "devDependencies": {
     "LiveScript": ">=1.2.0",
     "d3-geo": "^1.11.9",
     "d3-geo-projection": "^2.8.1",
+    "deploy": "github:zbryikt/deploy",
     "ndjson-cli": "^0.3.1",
     "shapefile": "^0.6.6",
     "stylus": "^0.54.5",
     "svgeo": "^0.3.5",
-    "template": "github:zbryikt/template#v2",
+    "template": "github:zbryikt/template#v2.1.8",
     "topojson": "^3.0.2",
     "topojson-client": "^3.1.0",
     "topojson-server": "^3.0.1",
