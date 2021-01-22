@@ -37,7 +37,7 @@ options:
 
 
 methods of map object:
- * init - map initialization, include data fetching / path elements creating.
+ * init - map initialization, include data fetching / path elements creating. return promise.
  * fit - fit map to the size of container.
 
 Additional pdmaptw methods:
