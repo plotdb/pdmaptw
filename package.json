@@ -7,10 +7,10 @@
   "files": [
     "dist/**/*"
   ],
-  "homepage": "https://github.com/plotdb/pdmap.tw",
+  "homepage": "https://github.com/plotdb/pdmaptw",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plotdb/pdmap.tw"
+    "url": "https://github.com/plotdb/pdmaptw"
   },
   "engines": {
     "node": ">=0.12.6",
