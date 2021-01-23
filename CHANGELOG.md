@@ -1,3 +1,8 @@
+## 0.0.4
+
+ - remove useless dependency.
+
+
 ## 0.0.3
 
  - use ssl when fetching shp files. store shp file urls in variables.
