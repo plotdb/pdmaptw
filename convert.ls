@@ -1,4 +1,4 @@
-require! <[fs shapefile topojson d3-geo d3-geo-projection]>
+require! <[fs fs-extra shapefile topojson d3-geo d3-geo-projection]>
 
 d3 = {} <<< d3-geo
 d3 <<< d3-geo-projection
@@ -38,11 +38,14 @@ proc = (lv) ->
 
       topo = topojson.topology {pdmaptw: divisions}, 1e5
       topo = topojson.presimplify topo
-      topo = topojson.quantize(
-        topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv]), 1e5
-      )
-      fs.write-file-sync "dist/#lv.topo.json", JSON.stringify(topo)
-      fs.write-file-sync "dist/#lv.meta.json", JSON.stringify(meta)
+      topo = topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv])
+      try
+        topo = topojson.quantize(topo, 1e5)
+      catch e
+        console.log e
+      fs-extra.ensure-dir-sync "src/topojson"
+      fs.write-file-sync "src/topojson/#lv.topo.json", JSON.stringify(topo)
+      fs.write-file-sync "src/topojson/#lv.meta.json", JSON.stringify(meta)
 
 proc \county
   .then -> proc \town

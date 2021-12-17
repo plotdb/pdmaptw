@@ -1,10 +1,36 @@
 #!/usr/bin/env bash
+rm -rf dist
 mkdir -p dist
-echo "build src/pdmaptw.ls -> dist/pdmaptw.js ..."
-npx lsc -cp --no-header src/pdmaptw.ls > dist/pdmaptw.js
-echo "minifying pdmaptw.js ..."
-npx uglifyjs dist/pdmaptw.js > dist/pdmaptw.min.js
+echo "build src/index.ls -> dist/index.js ..."
+./node_modules/.bin/lsc -cp --no-header src/index.ls > dist/index.js
+echo "minifying index.js ..."
+./node_modules/.bin/uglifyjs dist/index.js -m -c > dist/index.min.js
+
+echo "pdmaptw.register('county',{topo:" > dist/county.map.js
+cat src/topojson/county.topo.json >> dist/county.map.js
+echo ",meta:" >> dist/county.map.js
+cat src/topojson/county.meta.json >> dist/county.map.js
+echo "});" >> dist/county.map.js
+echo "pdmaptw.register('town',{topo:" > dist/town.map.js
+cat src/topojson/town.topo.json >> dist/town.map.js
+echo ",meta:" >> dist/town.map.js
+cat src/topojson/town.meta.json >> dist/town.map.js
+echo "});" >> dist/town.map.js
+echo "pdmaptw.register('village',{topo:" > dist/village.map.js
+cat src/topojson/village.topo.json >> dist/village.map.js
+echo ",meta:" >> dist/village.map.js
+cat src/topojson/village.meta.json >> dist/village.map.js
+echo "});" >> dist/village.map.js
+
+cp src/topojson/county.topo.json dist/
+cp src/topojson/county.meta.json dist/
+cp src/topojson/town.topo.json dist/
+cp src/topojson/town.meta.json dist/
+cp src/topojson/village.topo.json dist/
+cp src/topojson/village.meta.json dist/
+
 echo "deploy into local web ..."
+rm -rf web/static/assets/lib/pdmaptw/dev
 mkdir -p web/static/assets/lib/pdmaptw/dev
 cp -R dist/* web/static/assets/lib/pdmaptw/dev
 echo "done."

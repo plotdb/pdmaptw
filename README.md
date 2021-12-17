@@ -1,90 +1,111 @@
-# pdmap.tw
+# pdmaptw
 
 台灣 ( "中華民國自由地區"，含台、澎、金、馬 ) 縣市、鄉鎮、村里界圖。含前端繪圖函式 ( 基於 d3.js v4 )
 
 
-## 前端源碼
+## Installation
 
-### Usage
+  npm install --save pdmaptw
 
-include required js file and dependencies:
 
-```
+## Frontend Usage
+
+`pdmaptw` depends on following libraries:
+
+ - d3@^4.0.0
+ - topojson@^2.0.0
+ - d3-geo@^1.0.0
+ - d3-geo-projection@^2.0.0
+
+include dependencies:
+
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="https://d3js.org/d3-color.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="<path-to-pdmaptw.js>"></script>
-```
+
+include main js file:
+
+    <script src="path/to/dist/index.js>"></script>
+
+include corresponding map files:
+
+    <script src="path/to/dist/county.map.js>"></script>
+    <script src="path/to/dist/town.map.js>"></script>
+    <script src="path/to/dist/village.map.js>"></script>
 
 
-create map object:
+Then, create map object:
 
-```
-    var obj = pdmaptw.create(opt);
-```
+    var obj = new pdmaptw.create(opt);
 
-options:
 
- * root: container for this map
- * type: 'county', 'town' or 'village'.
- * popup({evt, data}): function for handling and updating popup. optional. arguments:
+## Constructor Options
+
+ - `root`: container for this map
+ - `type: 'county', 'town' or 'village'.
+
+
+## API
+
+ - `init()`: map initialization, include data fetching / path elements creating. return promise.
+ - `fit(opt)`: fit map to the size of container. options:
+   - `box`: bounding box `{width, height}` for fix size hinting 
+
+
+## Events
+
+ - `hover`: fired when user hovers on geographic paths. with parameters:
    - evt: event for mouseover.
    - data: not null if mouseover path element of map. usually a topojson object with `properties` member:
      - properties.name - name for this geographic block, like "高雄市左營區"
- * baseurl: base path where data files are.
 
 
-methods of map object:
- * init - map initialization, include data fetching / path elements creating. return promise.
- * fit - fit map to the size of container.
+## Class Methods
 
-Additional pdmaptw methods:
- * projection([lng, lat]) - d3js GeoProjection for 台澎金馬地區, as compact as possible.
- * normalize - name normalization, e.g., replace '臺' with '台'.
+ - `projection()`: return a d3js GeoProjection for 台澎金馬地區, as compact as possible.
+   - the returned function accepts parameters as an array with `[lng, lat]` format.
+ - `normalize(str)` - name normalization, e.g., replace '臺' with '台'.
 
 
-## 地圖檔建置
+## Building Map File
 
-### Usage
+After `npm install`, Fetch data and build:
 
-Fetch data and build:
-
-```
     npm run build
-```
 
 Alternatively, execute the script manually:
 
-```
     ./fetch
-    lsc convert.ls
+    ./node_modules/.bin/lsc convert.ls
     ./build
-```
 
- * `fetch` will download and unzip shp files from government website to download folder.
- * `convert.ls` will process all shp files and convert them to topojson.
+What the above commands do:
+
+ - `fetch` will download and unzip shp files from government website to download folder.
+ - `convert.ls` will process all shp files and convert them to topojson.
    - tweak `mw` and `w` for twaking topojson size. be sure to test in major browsers before using.
      escpecially windows firefox since we encountered an abnormal path before.
- * `build` build the utility js `twmap` for frontend rendering.
- * `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg. for getting topojson, simply use `convert.ls` directly.
+ - `build` build the utility js `twmap` for frontend rendering.
+ - `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg.
+   - for getting topojson, simply use `convert.ls` directly.
+
+
+## Demonstration
 
 For a sample usage in frontend:
 
-```
     npm start
-```
 
-then open http://localhost:3000/
-
+the script will start a simple server and open the demo page automatically.
 
 
-### meta.json structure
+
+## meta.json structure
 
 for keeping topojson metadata. lookup with cid/tid/vcode.
 
-```
    {
      county: {
       "county-id": {c: "county-code", n: "county-name"}, ...
@@ -96,13 +117,10 @@ for keeping topojson metadata. lookup with cid/tid/vcode.
       "village-code": {n: "village-name"}, ...
      }
    }
-```
 
 properties in topojson is then converted to: 
 
-```
     { cid: "county-id", tid: "town-id", vcode: "village-code" }
-```
 
 each field exists only when applicable.
 
@@ -144,6 +162,7 @@ each field exists only when applicable.
      - topomerge -k 'd.id.slice(0,3)' counties=tracts < <topojson3> > <topojson4>
 
  * geojson to topojson
+
 
 ## License
 

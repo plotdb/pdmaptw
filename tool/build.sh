@@ -38,9 +38,9 @@ else
   done
 
   echo "copy files to dist/ folder.."
-  mkdir -p dist
-  rm dist/*.json
-  ls out | grep -v "raw" | xargs -I % cp out/% dist/
+  mkdir -p src/topojson
+  rm -f src/topjson/*.json
+  ls out | grep -v "raw" | xargs -I % cp out/% src/topojson
 
   echo "done."
 
