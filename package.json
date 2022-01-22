@@ -4,6 +4,7 @@
   "license": "MIT",
   "description": "Taiwan Map",
   "version": "1.0.0",
+  "browser": "dist/index.min.js",
   "main": "dist/index.min.js",
   "files": [
     "dist/**/*"
