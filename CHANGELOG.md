@@ -1,5 +1,13 @@
 # Change Logs
 
+## v2.0.0
+
+ - add `browser` field in `package.json`.
+ - upgrade modules
+ - patch test code to make it work with upgraded modules
+ - release with compact directory structure
+
+
 ## v1.0.0
 
  - remove scoping ( scope by build script )
