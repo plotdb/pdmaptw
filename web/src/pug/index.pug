@@ -2,7 +2,7 @@ doctype html
 html
   head
     +css("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
-    +css("/assets/lib/ldui/ldui.min.css")
+    +css("/assets/lib/@loadingio/bootstrap.ext/main/index.min.css")
     style: :stylus
   body.p-4
     .row.mb-4(style="min-height:500px")
@@ -25,23 +25,19 @@ html
           div(ld="elapsed",data-name="village")
           div(ld="size",data-name="village")
     h3.text-center(ld="info") n/a
-    +script("assets/lib/ldui/ldui.min.js")
     +script([
-      {name: "d3", version: "main", path: "d3.min.js"},
-      {name: "d3-color", version: "main", path: "d3-color.min.js"},
-      {name: "d3-interpolate", version: "main", path: "d3-interpolate.min.js"},
-      {name: "d3-scale-chromatic", version: "main", path: "d3-scale-chromatic.min.js"},
-      {name: "d3-geo", version: "main", path: "d3-geo.min.js"},
-      {name: "d3-geo-projection", version: "main", path: "d3-geo-projection.min.js"},
-      {name: "topojson", version: "main", path: "topojson.min.js"}
+      {name: "d3", version: "main", path: "build/d3.min.js"},
+      {name: "d3-color", version: "main", path: "dist/d3-color.min.js"},
+      {name: "d3-interpolate", version: "main", path: "dist/d3-interpolate.min.js"},
+      {name: "d3-scale-chromatic", version: "main", path: "dist/d3-scale-chromatic.min.js"},
+      {name: "d3-geo", version: "main", path: "dist/d3-geo.min.js"},
+      {name: "d3-geo-projection", version: "main", path: "dist/d3-geo-projection.min.js"},
+      {name: "topojson", version: "main", path: "dist/topojson.min.js"},
+      {name: "@loadingio/debounce.js", version: "main"},
+      {name: "@loadingio/ldquery", version: "main"},
+      {name: "ldview", version: "main"}
     ])
 
-    //-
-      +script("https://d3js.org/d3.v4.js")
-      +script("https://d3js.org/topojson.v2.min.js")
-      +script("https://d3js.org/d3-color.v1.min.js")
-      +script("https://d3js.org/d3-interpolate.v1.min.js")
-      +script("https://d3js.org/d3-scale-chromatic.v1.min.js")
     +script("assets/lib/pdmaptw/dev/index.min.js")
     +script("assets/lib/pdmaptw/dev/county.map.js")
     +script("assets/lib/pdmaptw/dev/town.map.js")

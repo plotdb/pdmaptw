@@ -24,19 +24,23 @@
     "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./build"
   },
   "devDependencies": {
+    "@loadingio/bootstrap.ext": "^0.0.4",
+    "@loadingio/debounce.js": "^1.0.1",
+    "@loadingio/ldquery": "^3.0.2",
+    "@zbryikt/deploy": "^0.0.1",
+    "@zbryikt/template": "^2.3.33",
     "d3": "^4.0.0",
     "d3-color": "^1.0.0",
     "d3-geo": "^1.11.9",
     "d3-geo-projection": "^2.8.1",
     "d3-interpolate": "^1.0.0",
     "d3-scale-chromatic": "^1.0.0",
-    "@zbryikt/deploy": "^0.0.1",
     "fedep": "^1.1.2",
+    "ldview": "^1.0.0",
     "livescript": "^1.6.0",
     "ndjson-cli": "^0.3.1",
     "shapefile": "^0.6.6",
     "stylus": "^0.55.0",
-    "@zbryikt/template": "^2.3.33",
     "topojson": "^2.0.0",
     "topojson-client": "^3.1.0",
     "topojson-server": "^3.0.1",
@@ -47,13 +51,17 @@
   "frontendDependencies": {
     "root": "web/static/assets/lib",
     "modules": [
-      {"name": "d3", "dir": "build"},
-      {"name": "d3-color", "dir": "dist"},
-      {"name": "d3-interpolate", "dir": "dist"},
-      {"name": "d3-scale-chromatic", "dir": "dist"},
+      "@loadingio/bootstrap.ext",
+      "@loadingio/debounce.js",
+      "@loadingio/ldquery",
+      "d3",
+      "d3-color",
+      "d3-interpolate",
+      "d3-scale-chromatic",
       "d3-geo",
       "d3-geo-projection",
-      "topojson"
+      "topojson",
+      "ldview"
     ]
   }
 }

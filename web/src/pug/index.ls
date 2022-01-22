@@ -1,5 +1,5 @@
 <-(->it!) _
-view = new ldView do
+view = new ldview do
   root: document.body
   handler: do
     "count": (->)
