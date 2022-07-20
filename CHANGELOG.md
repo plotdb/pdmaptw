@@ -1,5 +1,11 @@
 # Change Logs
 
+## v2.0.1
+
+ - bug fix: SVG element should be created with namespace.
+ - upgrade dev dependencies and do audit fix
+
+
 ## v2.0.0
 
  - add `browser` field in `package.json`.

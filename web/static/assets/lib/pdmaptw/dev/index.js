@@ -50,7 +50,7 @@
         ? root
         : ld$.parent(root, 'svg');
       if (!this.svg) {
-        root.appendChild(this.svg = document.createElement('svg'));
+        root.appendChild(this.svg = document.createElementNS(ns, 'svg'));
         this.svg.setAttribute('width', '100%');
         this.svg.setAttribute('height', '100%');
       }

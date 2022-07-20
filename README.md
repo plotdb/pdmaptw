@@ -38,7 +38,10 @@ include corresponding map files:
 
 Then, create map object:
 
-    var obj = new pdmaptw.create(opt);
+    var obj = new pdmaptw(opt);
+    obj.init().then(function() {
+      obj.fit();
+    });
 
 
 ## Constructor Options

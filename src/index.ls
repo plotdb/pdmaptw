@@ -21,7 +21,7 @@ pdmaptw.prototype = Object.create(Object.prototype) <<< do
     @svg = if root.nodeName.toLowerCase! == \svg => root
     else ld$.parent(root, 'svg')
     if !@svg =>
-      root.appendChild(@svg = document.createElement \svg)
+      root.appendChild(@svg = document.createElementNS ns, \svg)
       @svg.setAttribute \width, \100%
       @svg.setAttribute \height, \100%
     if root.nodeName.toLowerCase! == \g => @node = root
