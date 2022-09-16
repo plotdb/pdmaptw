@@ -91,6 +91,9 @@
         return d3.select(this$.g).attr('class', 'pdmaptw').selectAll('path').data(features).enter().append('path').attr('d', path);
       });
     },
+    scale: function(){
+      return this._scale || 1;
+    },
     fit: function(opt){
       var box, bcr, bbox, ref$, width, height, padding, scale, w, h;
       opt == null && (opt = {});
@@ -103,7 +106,7 @@
       bbox = this.g.getBBox();
       ref$ = [bcr.width, bcr.height], width = ref$[0], height = ref$[1];
       padding = this.padding != null ? this.padding : 20;
-      scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height);
+      this._scale = scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height);
       ref$ = [width / 2, height / 2], w = ref$[0], h = ref$[1];
       return this.g.setAttribute('transform', "translate(" + w + "," + h + ") scale(" + scale + ") translate(" + (-bbox.x - bbox.width / 2) + "," + (-bbox.y - bbox.height / 2) + ")");
     }

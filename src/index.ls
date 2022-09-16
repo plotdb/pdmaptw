@@ -47,13 +47,15 @@ pdmaptw.prototype = Object.create(Object.prototype) <<< do
           .data features
           .enter!append(\path).attr(\d, path)
 
+  scale: -> @_scale or 1
+
   fit: (opt = {}) ->
     {box} = opt
     bcr = if box => box else if @node.getBoundingClientRect => @node.getBoundingClientRect! else @node.getBBox!
     bbox = @g.getBBox!
     [width,height] = [bcr.width,bcr.height]
     padding = if @padding? => @padding else 20
-    scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
+    @_scale = scale = Math.min((width - 2 * padding) / bbox.width, (height - 2 * padding) / bbox.height)
     [w,h] = [width / 2, height / 2]
     @g.setAttribute(
       \transform

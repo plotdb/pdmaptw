@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.1.0
+
+ - add `scale()` api for getting map scale
+
+
 ## v2.0.1
 
  - bug fix: SVG element should be created with namespace.
