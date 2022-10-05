@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.1.1
+
+ - upgrade devdeps for vulnerabilities fixing
+
+
 ## v2.1.0
 
  - add `scale()` api for getting map scale
