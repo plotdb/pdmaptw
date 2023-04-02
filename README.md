@@ -82,6 +82,7 @@ Alternatively, execute the script manually:
 
     ./fetch
     ./node_modules/.bin/lsc convert.ls
+    ./node_modules/.bin/lsc filter.ls
     ./build
 
 What the above commands do:
@@ -90,6 +91,7 @@ What the above commands do:
  - `convert.ls` will process all shp files and convert them to topojson.
    - tweak `mw` and `w` for twaking topojson size. be sure to test in major browsers before using.
      escpecially windows firefox since we encountered an abnormal path before.
+ - `filter.ls` will generate separated county files.
  - `build` build the utility js `twmap` for frontend rendering.
  - `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg.
    - for getting topojson, simply use `convert.ls` directly.

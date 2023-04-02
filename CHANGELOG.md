@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.2.0
+
+ - generate topojsons for each county (and their corresponding towns)
+
+
 ## v2.1.1
 
  - upgrade devdeps for vulnerabilities fixing

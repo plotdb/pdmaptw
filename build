@@ -22,6 +22,17 @@ echo ",meta:" >> dist/village.map.js
 cat src/topojson/village.meta.json >> dist/village.map.js
 echo "});" >> dist/village.map.js
 
+mkdir -p dist/county
+for n in $(ls src/topojson/county); do
+  m="${n/.topo.json/}"
+  echo "generate topojson for $m ..."
+  echo "pdmaptw.register('county/$m',{topo:" > dist/county/$m.map.js
+  cat src/topojson/county/$m.topo.json >> dist/county/$m.map.js
+  echo ",meta:" >> dist/county/$m.map.js
+  cat src/topojson/town.meta.json >> dist/county/$m.map.js
+  echo "});" >> dist/county/$m.map.js
+done
+
 cp src/topojson/county.topo.json dist/
 cp src/topojson/county.meta.json dist/
 cp src/topojson/town.topo.json dist/
