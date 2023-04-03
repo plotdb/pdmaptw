@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.2.1
+
+ - fix bug: released dist topojson files are not simplified.
+
+
 ## v2.2.0
 
  - generate topojsons for each county (and their corresponding towns)
