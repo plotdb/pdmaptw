@@ -1,6 +1,6 @@
 # pdmaptw
 
-台灣 ( "中華民國自由地區"，含台、澎、金、馬 ) 縣市、鄉鎮、村里界圖。含前端繪圖函式 ( 基於 d3.js v4 )
+台灣 ( "中華民國自由地區"，含台、澎、金、馬 ) 縣市、鄉鎮、村里界圖。含前端繪圖函式 ( 基於 d3.js，v4 ~ v7 皆可 )
 
 
 ## Installation
@@ -10,20 +10,17 @@
 
 ## Frontend Usage
 
-`pdmaptw` depends on following libraries:
+`pdmaptw` needs two globals at runtime: `d3` and `topojson` ( topojson-client ).
+It only uses `d3.geoProjection` / `d3.geoPath` / `d3.select`, which are identical from
+d3 v4 through v7 — the released files are tested against v7.
 
- - d3@^4.0.0
- - topojson@^2.0.0
- - d3-geo@^1.0.0
- - d3-geo-projection@^2.0.0
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
-include dependencies:
+Colour scales are not used by the library itself; include them only if your own code
+needs them:
 
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/topojson.v2.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-scale-chromatic@3"></script>
 
 include main js file:
 
@@ -46,8 +43,11 @@ Then, create map object:
 
 ## Constructor Options
 
- - `root`: container for this map
- - `type: 'county', 'town' or 'village'.
+ - `root`: container for this map. a CSS selector, or a DOM node — a plain `<div>`, an
+   existing `<svg>`, or a `<g>` inside one. no extra dependency is needed for any of them.
+ - `type`: `'county'`, `'town'`, `'village'`, or `'county/<縣市名>'` for a single county's
+   towns ( e.g. `'county/臺中市'` ). must match a map file that has been loaded.
+ - `padding`: padding in pixels used by `fit()`. defaults to 20.
 
 
 ## API
@@ -55,14 +55,36 @@ Then, create map object:
  - `init()`: map initialization, include data fetching / path elements creating. return promise.
  - `fit(opt)`: fit map to the size of container. options:
    - `box`: bounding box `{width, height}` for fix size hinting 
+ - `scale()`: the scale factor applied by the last `fit()`.
+ - `choropleth(opt)`: fill the regions from a value lookup. returns the map object.
+   - `data`: an object keyed by region, e.g. `{"63000": 270, "65000": 400}`.
+   - `key`: which property `data` is keyed by — `'code'` ( default ) or `'name'`.
+   - `scale`: a function turning a value into a colour. omit it to use the values in
+     `data` as colours directly.
+   - `empty`: colour for regions absent from `data`. defaults to `#eee`.
+
+The drawn `<path>` elements carry no fill of their own, so nothing is coloured until you
+say so:
+
+    var map = new pdmaptw({root: '#map', type: 'county'});
+    map.init().then(function() {
+      map.choropleth({
+        data: {"63000": 270, "65000": 400, "64000": 277},
+        scale: d3.scaleSequential(d3.interpolateBlues).domain([0, 400])
+      });
+      map.fit();
+    });
+
+`choropleth()` only sets `fill`; stroke, hover styling and anything else stays yours to do
+on `map.g`.
 
 
 ## Events
 
  - `hover`: fired when user hovers on geographic paths. with parameters:
    - evt: event for mouseover.
-   - data: not null if mouseover path element of map. usually a topojson object with `properties` member:
-     - properties.name - name for this geographic block, like "高雄市左營區"
+   - data: not null if mouseover path element of map. a geojson feature — see
+     [Feature Properties](#feature-properties) for what its `properties` holds.
 
 
 ## Class Methods
@@ -85,13 +107,23 @@ Alternatively, execute the script manually:
     ./node_modules/.bin/lsc filter.ls
     ./build
 
+Past releases are kept under `archive/` — see `archive/README.md`. The government only
+serves the current version of each dataset, so building over the old files is the only way
+back to an earlier boundary set.
+
 What the above commands do:
 
- - `fetch` will download and unzip shp files from government website to download folder.
+ - `fetch` downloads and unzips the shp files into `download/`. The files live on tgos.tw
+   and their names carry a release date that changes on every update, so `fetch` resolves
+   the current url from the data.gov.tw dataset API rather than hardcoding it, and records
+   the url it used in `download/<level>/source.txt`.
  - `convert.ls` will process all shp files and convert them to topojson.
-   - tweak `mw` and `w` for twaking topojson size. be sure to test in major browsers before using.
-     escpecially windows firefox since we encountered an abnormal path before.
- - `filter.ls` will generate separated county files.
+   - tweak `mw` and `w` for tweaking topojson size. be sure to test in major browsers before
+     using, escpecially windows firefox since we encountered an abnormal path before.
+   - simplification can leave a ring degenerate or wound the wrong way, and d3-geo reads
+     such a ring as covering the whole sphere — one of them paints the entire map. the
+     `clean` step drops and re-winds those, so check its output if you change `mw` / `w`.
+ - `filter.ls` will generate separated county files, under `src/topojson/county/`.
  - `build` build the utility js `twmap` for frontend rendering.
  - `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg.
    - for getting topojson, simply use `convert.ls` directly.
@@ -107,28 +139,34 @@ the script will start a simple server and open the demo page automatically.
 
 
 
-## meta.json structure
+## Feature Properties
 
-for keeping topojson metadata. lookup with cid/tid/vcode.
+Each feature drawn by `init()` carries:
 
-   {
-     county: {
-      "county-id": {c: "county-code", n: "county-name"}, ...
-     },
-     town: {
-      "town-id": {c: "town-code", n: "town-name"}, ...
-     },
-     village: {
-      "village-code": {n: "village-name"}, ...
-     }
-   }
+ - `code`: the official 行政區代碼 from the source shapefile — 5 digits for a county
+   ( `"63000"` 臺北市 ), 8 for a town ( `"63000030"` 臺北市大安區 ), 11 for a village
+   ( `"63000030037"` ). A county code is a prefix of its town codes, which are a prefix
+   of their village codes, so a coarser code is always `code.substring(0, 5)` /
+   `code.substring(0, 8)`. **Prefer this over the name when joining your own data.**
+ - `name`: the composed Chinese name, normalized with `pdmaptw.normalize` — so `"台北市"`,
+   `"高雄市左營區"`, `"台東縣成功鎮"`, always in 台 form, never 臺. Town and village names
+   include the county prefix; a bare `"大安區"` will not match.
+ - `c` / `t` / `v`: indices into `meta.name`, from which `name` is composed. These are an
+   implementation detail of the file format.
 
-properties in topojson is then converted to: 
+`meta` ( the second half of each `*.map.js`, also released as `<level>.meta.json` ) is:
 
-    { cid: "county-id", tid: "town-id", vcode: "village-code" }
+    {
+      name: [ ...names, deduplicated across all levels... ],
+      source: {level: "town", file: "TOWN_MOI_1140318", date: "2025-03-18"}
+    }
 
-each field exists only when applicable.
+`meta.source` records which government shapefile release the file was built from.
+It is reachable as `obj.lc.meta.source` after `init()`.
 
+A handful of the smallest urban 里 collapse to nothing during simplification. They are
+kept as features with an empty geometry, so a join on `code` still finds them — they just
+draw no visible shape. Unnamed islets ( `未編定村里` ) are dropped entirely.
 
 ## 詳細產製流程
 

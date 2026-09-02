@@ -1,27 +1,51 @@
 #!/usr/bin/env bash
+# Fetch administrative boundary shapefiles from 政府資料開放平臺 (data.gov.tw).
+#
+# The actual files live on tgos.tw and their names carry a release date that
+# changes on every update ( e.g. 鄉(鎮、市、區)界線1140318.zip ), so we resolve the
+# current download url from the dataset api instead of hardcoding it:
+#
+#   county  - https://data.gov.tw/dataset/7442  直轄市、縣市界線(TWD97經緯度)
+#   town    - https://data.gov.tw/dataset/7441  鄉鎮市區界線(TWD97經緯度)
+#   village - https://data.gov.tw/dataset/7438  村里界圖(TWD97經緯度)
+set -e
 
-rm -rf download/county download/town download/village
-mkdir -p download/county
-mkdir -p download/town
-mkdir -p download/village
+api="https://data.gov.tw/api/v2/rest/dataset"
 
-countyfile="https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=72874C55-884D-4CEA-B7D6-F60B0BE85AB0"
-townfile="https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=CD02C824-45C5-48C8-B631-98B205A2E35A"
-villagefile="https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=B8AF344F-B5C6-4642-AF46-1832054399CE"
+# resolve the SHP distribution url of a dataset. prints url, or nothing if not found.
+resolve() {
+  curl -sfL --max-time 60 "$api/$1" | python3 -c '
+import sys, json, urllib.parse
+r = json.load(sys.stdin).get("result") or {}
+for d in r.get("distribution", []):
+    if d.get("resourceFormat", "").upper() == "SHP":
+        u = d["resourceDownloadUrl"]
+        # the path may contain chinese characters / parentheses. percent-encode it.
+        p = urllib.parse.urlsplit(u)
+        print(urllib.parse.urlunsplit(p._replace(path=urllib.parse.quote(p.path))))
+        break
+'
+}
 
+get() {
+  local lv=$1 dataset=$2 url
+  echo "resolving $lv (dataset $dataset) ..."
+  url=$(resolve "$dataset")
+  if [ -z "$url" ]; then
+    echo "  !! cannot resolve SHP url for dataset $dataset. see https://data.gov.tw/dataset/$dataset" >&2
+    return 1
+  fi
+  echo "  url: $url"
+  rm -rf "download/$lv"
+  mkdir -p "download/$lv"
+  echo "$url" > "download/$lv/source.txt"
+  curl -fL --max-time 900 -o "download/$lv/shp.zip" "$url"
+  # extract map files only: the zips also carry an xlsx whose filename is not valid
+  # utf-8, which makes unzip fail on macos.
+  ( cd "download/$lv" && unzip -o -q -j shp.zip '*.shp' '*.dbf' '*.prj' '*.shx' )
+}
 
-# county - https://data.gov.tw/dataset/7442
-echo "fetching county files..."
-wget -O download/county/shp.zip $countyfile
-
-cd download/county; unzip shp.zip; cd ../..
-
-# town - https://data.gov.tw/dataset/7442
-echo "fetching town files..."
-wget -O download/town/shp.zip $townfile
-cd download/town; unzip shp.zip; cd ../..
-
-# village - https://data.gov.tw/dataset/7438
-echo "fetching village files..."
-wget -O download/village/shp.zip $villagefile
-cd download/village; unzip shp.zip; cd ../..
+get county  7442
+get town    7441
+get village 7438
+echo "done."

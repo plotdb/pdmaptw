@@ -46,9 +46,7 @@
     init: function(){
       var root, type, popup, this$ = this;
       root = this.root, type = this.type, popup = this.popup;
-      this.svg = root.nodeName.toLowerCase() === 'svg'
-        ? root
-        : ld$.parent(root, 'svg');
+      this.svg = root.closest ? root.closest('svg') : void 8;
       if (!this.svg) {
         root.appendChild(this.svg = document.createElementNS(ns, 'svg'));
         this.svg.setAttribute('width', '100%');
@@ -90,6 +88,23 @@
         this$.lc.path = path = d3.geoPath().projection(pdmaptw.projection());
         return d3.select(this$.g).attr('class', 'pdmaptw').selectAll('path').data(features).enter().append('path').attr('d', path);
       });
+    },
+    choropleth: function(opt){
+      var data, key, ref$, scale, empty;
+      opt == null && (opt = {});
+      data = opt.data, key = (ref$ = opt.key) != null ? ref$ : 'code', scale = opt.scale, empty = (ref$ = opt.empty) != null ? ref$ : '#eee';
+      d3.select(this.g).selectAll('path').attr('fill', function(d){
+        var v;
+        v = data != null ? data[d.properties[key]] : void 8;
+        if (v == null) {
+          return empty;
+        } else if (typeof scale === 'function') {
+          return scale(v);
+        } else {
+          return v;
+        }
+      });
+      return this;
     },
     scale: function(){
       return this._scale || 1;

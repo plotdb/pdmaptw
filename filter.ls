@@ -25,7 +25,9 @@ generate = (name) ->
     console.error "no features found for county #{name}. skipped."
     return
   filtered-geojson = {pdmaptw: {type: \FeatureCollection, features}}
-  topology = topojson.topology filtered-geojson, {quantization: 1e6}
+  # `topology` takes the quantization factor as a plain number. passing an object
+  # here silently disabled quantization and made these files ~200x bigger than needed.
+  topology = topojson.topology filtered-geojson, 1e5
   fs.ensure-dir-sync "src/topojson/county"
   fs.write-file-sync "src/topojson/county/#{name}.topo.json", JSON.stringify(topology)
 

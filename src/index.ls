@@ -18,8 +18,8 @@ pdmaptw.prototype = Object.create(Object.prototype) <<< do
   fire: (n, ...v) -> for cb in (@evt-handler[n] or []) => cb.apply @, v
   init: ->
     {root, type, popup} = @
-    @svg = if root.nodeName.toLowerCase! == \svg => root
-    else ld$.parent(root, 'svg')
+    # `closest` matches the node itself too, so an <svg> root resolves to itself.
+    @svg = if root.closest => root.closest \svg
     if !@svg =>
       root.appendChild(@svg = document.createElementNS ns, \svg)
       @svg.setAttribute \width, \100%
@@ -46,6 +46,18 @@ pdmaptw.prototype = Object.create(Object.prototype) <<< do
           .selectAll \path
           .data features
           .enter!append(\path).attr(\d, path)
+
+  # paint the map from a value lookup. `data` is keyed by whatever `key` names -
+  # `code` ( the 行政區代碼, default ) or `name` ( the composed chinese name ).
+  # `scale` turns a value into a color; without one the values are used as colors.
+  # regions with no entry in `data` get `empty`.
+  choropleth: (opt = {}) ->
+    {data, key = \code, scale, empty = \#eee} = opt
+    d3.select @g .selectAll \path
+      .attr \fill, (d) ->
+        v = data?[d.properties[key]]
+        if !v? => empty else if typeof(scale) == \function => scale v else v
+    @
 
   scale: -> @_scale or 1
 
