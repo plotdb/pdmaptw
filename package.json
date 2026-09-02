@@ -27,6 +27,7 @@
     "@loadingio/bootstrap.ext": "^0.0.9",
     "@loadingio/debounce.js": "^1.0.1",
     "@loadingio/ldquery": "^3.0.4",
+    "@plotdb/guides": "github:plotdb/guides#master",
     "@zbryikt/deploy": "^0.0.1",
     "@zbryikt/template": "^2.5.0",
     "d3": "^7.6.1",
