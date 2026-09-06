@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pdmaptw sample - init / fit / choropleth</title>
+<style>
+body { font: 14px/1.6 sans-serif; margin: 0; padding: 24px; color: #333; }
+h1 { font-size: 18px; margin: 0 0 4px; }
+p.note { margin: 0 0 16px; color: #777; }
+.bar { margin-bottom: 12px; }
+.bar select, .bar button { font: inherit; padding: 4px 8px; }
+#map { width: 100%; height: 70vh; border: 1px solid #ddd; background: #fafafa; }
+#map path { stroke: #fff; stroke-width: 0.5px; }
+#map path:hover { stroke: #333; stroke-width: 1px; }
+#marker { fill: #d33; }
+#status { margin-top: 8px; min-height: 1.6em; }
+code { background: #f3f3f3; padding: 1px 4px; }
+</style>
+</head>
+<body>
+
+<h1>pdmaptw sample</h1>
+<p class="note">
+  <code>init()</code> draws the map, <code>fit()</code> scales it into the container,
+  <code>choropleth()</code> colours it, and <code>pdmaptw.projection()</code> places a
+  marker from a <code>[lng, lat]</code> pair.
+</p>
+
+<div class="bar">
+  <select id="type">
+    <option value="county">county — 縣市</option>
+    <option value="town" selected>town — 鄉鎮市區</option>
+    <option value="village">village — 村里</option>
+    <option value="county/臺中市">county/臺中市 — 單一縣市的鄉鎮</option>
+    <option value="county/臺中市/village">county/臺中市/village — 單一縣市的村里</option>
+  </select>
+  <button id="recolor">recolor</button>
+</div>
+
+<div id="map"></div>
+<div id="status">&nbsp;</div>
+
+<script src="/assets/lib/d3/main/dist/d3.min.js"></script>
+<script src="/assets/lib/d3-color/main/dist/d3-color.min.js"></script>
+<script src="/assets/lib/d3-interpolate/main/dist/d3-interpolate.min.js"></script>
+<script src="/assets/lib/d3-scale-chromatic/main/dist/d3-scale-chromatic.min.js"></script>
+<script src="/assets/lib/d3-geo/main/dist/d3-geo.min.js"></script>
+<script src="/assets/lib/d3-geo-projection/main/dist/d3-geo-projection.min.js"></script>
+<script src="/assets/lib/topojson/main/dist/topojson.min.js"></script>
+<script src="/assets/lib/pdmaptw/dev/index.min.js"></script>
+
+<script>
+var root = document.getElementById('map');
+var log = document.getElementById('status');
+var map = null;
+
+// each map file registers itself when it loads, so a type is usable once its file is in.
+// they are big enough ( village is ~1.8MB ) that loading them on demand is worth it.
+var loaded = {};
+function ensure(type) {
+  if (loaded[type]) return loaded[type];
+  var m = type.match(/^county\/([^\/]+)(\/(town|village))?$/);
+  var file = !m ? type + '.map.js'
+    : 'county/' + m[1] + (m[3] === 'village' ? '.village' : '') + '.map.js';
+  loaded[type] = new Promise(function(resolve, reject) {
+    var s = document.createElement('script');
+    s.src = '/assets/lib/pdmaptw/dev/' + file;
+    s.onload = resolve;
+    s.onerror = function() { reject(new Error('cannot load ' + file)); };
+    document.head.appendChild(s);
+  });
+  return loaded[type];
+}
+
+// a random value per region, keyed by the 行政區代碼. real code would put its own
+// numbers here - population, revenue, whatever - keyed the same way.
+function randomData(features) {
+  var data = {};
+  features.forEach(function(f) { data[f.properties.code] = Math.random(); });
+  return data;
+}
+
+function paint() {
+  if (!map) return;
+  map.choropleth({
+    data: randomData(map.lc.features),
+    scale: d3.scaleSequential(d3.interpolateYlGnBu).domain([0, 1])
+  });
+}
+
+function show(type) {
+  log.textContent = 'loading ' + type + ' ...';
+  ensure(type).then(function() {
+    root.innerHTML = '';
+    map = new pdmaptw({root: root, type: type, padding: 16});
+    return map.init();
+  }).then(function() {
+    paint();
+    map.fit();
+    marker();
+    map.on('hover', function(e) {
+      log.textContent = e.data
+        ? e.data.properties.name + ' ( ' + e.data.properties.code + ' )'
+        : '';
+    });
+    var src = map.lc.meta.source;
+    log.textContent = map.lc.features.length + ' regions, built from ' +
+      src.file + ' ( ' + src.date + ' )';
+  }).catch(function(e) { log.textContent = String(e); });
+}
+
+// pdmaptw.projection() takes [lng, lat] and returns the same coordinate space the paths
+// are drawn in, so anything positioned with it moves with the map. `fit()` transforms
+// the whole <g>, and the marker is inside it, so it needs no extra maths.
+function marker() {
+  var p = pdmaptw.projection()([121.5645, 25.0338]); // 台北 101
+  var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  c.setAttribute('id', 'marker');
+  c.setAttribute('cx', p[0]);
+  c.setAttribute('cy', p[1]);
+  // the projection works in a unit-ish space, so a visible radius is tiny. divide by
+  // the scale fit() applied to keep the marker the same size on screen at any zoom.
+  c.setAttribute('r', 3 / map.scale());
+  map.g.appendChild(c);
+}
+
+document.getElementById('type').addEventListener('change', function(e) { show(e.target.value); });
+document.getElementById('recolor').addEventListener('click', paint);
+window.addEventListener('resize', function() { if (map) map.fit(); });
+
+show(document.getElementById('type').value);
+</script>
+
+</body>
+</html>

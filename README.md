@@ -32,6 +32,16 @@ include corresponding map files:
     <script src="path/to/dist/town.map.js>"></script>
     <script src="path/to/dist/village.map.js>"></script>
 
+A single county is also available on its own, at both levels. These are much smaller than
+the national files ( a county's villages are 30 ~ 220KB against 1.8MB for all of them ),
+so load one of these instead when you only render one county:
+
+    <script src="path/to/dist/county/臺中市.map.js>"></script>
+    <script src="path/to/dist/county/臺中市.village.map.js>"></script>
+
+Each map file registers itself under a type when it loads. Load them on demand if you let
+the user switch levels — see `web/static/sample.html`.
+
 
 Then, create map object:
 
@@ -45,8 +55,12 @@ Then, create map object:
 
  - `root`: container for this map. a CSS selector, or a DOM node — a plain `<div>`, an
    existing `<svg>`, or a `<g>` inside one. no extra dependency is needed for any of them.
- - `type`: `'county'`, `'town'`, `'village'`, or `'county/<縣市名>'` for a single county's
-   towns ( e.g. `'county/臺中市'` ). must match a map file that has been loaded.
+ - `type`: which map to draw. must match a map file that has been loaded.
+   - `'county'` / `'town'` / `'village'`: the whole country at that level.
+   - `'county/<縣市名>'`: the towns of one county, e.g. `'county/臺中市'`.
+     `'county/<縣市名>/town'` is the same thing spelled out.
+   - `'county/<縣市名>/village'`: the villages of one county.
+   - county names here are as the government writes them — `臺中市`, not `台中市`.
  - `padding`: padding in pixels used by `fit()`. defaults to 20.
 
 
@@ -90,7 +104,18 @@ on `map.g`.
 ## Class Methods
 
  - `projection()`: return a d3js GeoProjection for 台澎金馬地區, as compact as possible.
-   - the returned function accepts parameters as an array with `[lng, lat]` format.
+   It moves 澎湖 / 金門 / 馬祖 / 釣魚臺 / 彭佳嶼 in towards the main island and clamps the
+   result to the resulting box, so the map has no large empty corners. The same instance is
+   shared by every map object.
+   - It takes one argument, an array in `[lng, lat]` order — longitude first, which is the
+     GeoJSON order and the reverse of how coordinates are usually said out loud.
+     `pdmaptw.projection()([121.5645, 25.0338])` is 台北 101.
+   - It returns `[x, y]` in the same coordinate space the `<path>` elements are drawn in,
+     so anything you position with it lines up with the map and moves with `fit()` as long
+     as you append it inside `map.g`. Sizes do not scale with it, so divide a radius or a
+     stroke width by `map.scale()` to keep it constant on screen.
+   - Because of the offsets above, feeding it a coordinate outside 台澎金馬 gives a point
+     that is clamped into the box rather than a meaningful position.
  - `normalize(str)` - name normalization, e.g., replace '臺' with '台'.
 
 
@@ -106,6 +131,7 @@ Alternatively, execute the script manually:
     ./node_modules/.bin/lsc convert.ls
     ./node_modules/.bin/lsc filter.ls
     ./build
+    ./node_modules/.bin/lsc verify.ls
 
 Past releases are kept under `archive/` — see `archive/README.md`. The government only
 serves the current version of each dataset, so building over the old files is the only way
@@ -124,7 +150,17 @@ What the above commands do:
      such a ring as covering the whole sphere — one of them paints the entire map. the
      `clean` step drops and re-winds those, so check its output if you change `mw` / `w`.
  - `filter.ls` will generate separated county files, under `src/topojson/county/`.
+   `<county>.topo.json` holds that county's towns and `<county>.village.topo.json` its
+   villages. `-n <county>` limits it to one county and `-l <level>` to one level, which is
+   useful while tuning.
  - `build` build the utility js `twmap` for frontend rendering.
+ - `verify.ls` checks what landed in `dist/`, and `npm run build` finishes by running it.
+   It loads the built files the way a browser does and asserts the things that broke in
+   past rebuilds: every feature carries a code of the right length, the codes nest, no
+   geometry covers the whole sphere, the smallest district survived filtering, every county
+   has both of its subfiles and they add up to the national totals, no file is unexpectedly
+   large, and `init` / `fit` / `choropleth` / `hover` still work in a jsdom page. Run it on
+   its own with `npm run verify`.
  - `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg.
    - for getting topojson, simply use `convert.ls` directly.
 
@@ -136,6 +172,12 @@ For a sample usage in frontend:
     npm start
 
 the script will start a simple server and open the demo page automatically.
+
+`/sample.html` on that server is a smaller, self-contained page — plain HTML with no build
+step, kept at `web/static/sample.html` so it can be read as one file. It covers `init()`,
+`fit()` including refit on resize, `choropleth()` keyed by `code`, the `hover` event,
+loading a map file on demand when the level changes, and placing a marker from a
+`[lng, lat]` pair with `pdmaptw.projection()`.
 
 
 

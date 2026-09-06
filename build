@@ -23,14 +23,29 @@ cat src/topojson/village.meta.json >> dist/village.map.js
 echo "});" >> dist/village.map.js
 
 mkdir -p dist/county
-for n in $(ls src/topojson/county); do
-  m="${n/.topo.json/}"
+for f in src/topojson/county/*.topo.json; do
+  m="$(basename "$f" .topo.json)"
+  # `<county>` holds towns, `<county>.village` holds villages. each is registered under
+  # the type the frontend asks for; the town file also answers the explicit
+  # `county/<name>/town` so both levels can be addressed the same way.
+  case "$m" in
+    *.village)
+      n="${m%.village}"
+      meta=src/topojson/village.meta.json
+      reg="pdmaptw.register('county/$n/village',d);"
+      ;;
+    *)
+      n="$m"
+      meta=src/topojson/town.meta.json
+      reg="pdmaptw.register('county/$n',d);pdmaptw.register('county/$n/town',d);"
+      ;;
+  esac
   echo "generate topojson for $m ..."
-  echo "pdmaptw.register('county/$m',{topo:" > dist/county/$m.map.js
-  cat src/topojson/county/$m.topo.json >> dist/county/$m.map.js
-  echo ",meta:" >> dist/county/$m.map.js
-  cat src/topojson/town.meta.json >> dist/county/$m.map.js
-  echo "});" >> dist/county/$m.map.js
+  echo "(function(d){$reg})({topo:" > "dist/county/$m.map.js"
+  cat "$f" >> "dist/county/$m.map.js"
+  echo ",meta:" >> "dist/county/$m.map.js"
+  cat "$meta" >> "dist/county/$m.map.js"
+  echo "});" >> "dist/county/$m.map.js"
 done
 
 cp src/topojson/county.topo.json dist/

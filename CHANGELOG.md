@@ -1,5 +1,24 @@
 # Change Logs
 
+## v2.4.0
+
+ - village maps are now also split per county: `dist/county/<縣市名>.village.map.js`,
+   registered as type `county/<縣市名>/village`. A county's villages are 30 ~ 220KB against
+   1.8MB for the whole country.
+ - the per-county town file also registers as `county/<縣市名>/town`, so both levels of a
+   single county can be addressed the same way. `county/<縣市名>` keeps its old meaning.
+ - `filter.ls` takes `-l <level>` to split only one level, alongside the existing `-n`.
+ - add `verify.ls` ( `npm run verify`, and run automatically at the end of `npm run build` ):
+   loads `dist/` the way a browser does and checks codes, code nesting, sphere-covering
+   geometry, the smallest district, per-county file coverage and totals, file sizes, and
+   `init` / `fit` / `choropleth` / `hover` in a jsdom page.
+ - add `web/static/sample.html`, a self-contained sample page covering `init` / `fit` /
+   `choropleth` / `hover`, on-demand map file loading, and placing a marker with
+   `pdmaptw.projection()`.
+ - document `pdmaptw.projection()` properly: `[lng, lat]` order, what its output shares with
+   the drawn paths, and that sizes need dividing by `scale()`.
+
+
 ## v2.3.0
 
  - map data now carries the official 行政區代碼 as `properties.code` ( 5 / 8 / 11 digits for

@@ -3,7 +3,7 @@
   "name": "pdmaptw",
   "license": "MIT",
   "description": "Taiwan Map",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "browser": "dist/index.min.js",
   "main": "dist/index.min.js",
   "files": [
@@ -21,7 +21,8 @@
   "scripts": {
     "deploy": "npx deploy web/static",
     "start": "npx server -r web -o true",
-    "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./node_modules/.bin/lsc ./filter.ls; ./build"
+    "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./node_modules/.bin/lsc ./filter.ls; ./build; npm run verify",
+    "verify": "./node_modules/.bin/lsc ./verify.ls"
   },
   "devDependencies": {
     "@loadingio/bootstrap.ext": "^0.0.9",
@@ -37,6 +38,7 @@
     "d3-interpolate": "^3.0.1",
     "d3-scale-chromatic": "^3.0.0",
     "fedep": "^1.8.0",
+    "jsdom": "^29.1.1",
     "ldview": "^1.7.2",
     "livescript": "^1.6.0",
     "ndjson-cli": "^0.3.1",

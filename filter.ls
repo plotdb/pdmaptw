@@ -6,6 +6,10 @@ argv = yargs
     alias: \n
     description: "county name"
     type: \string
+  .option \level, do
+    alias: \l
+    description: "level to split: town ( default ) or village. repeatable."
+    type: \array
   .help \help
   .alias \help, \h
   .check (argv, options) -> return true
@@ -13,22 +17,32 @@ argv = yargs
 
 county-meta = JSON.parse(fs.read-file-sync "src/topojson/county.meta.json" .toString!)
 names = if argv.n => [argv.n] else county-meta.name
+levels = if argv.l and argv.l.length => argv.l else <[town village]>
 
-topo = JSON.parse(fs.read-file-sync "src/topojson/town.topo.json" .toString!)
-meta = JSON.parse(fs.read-file-sync "src/topojson/town.meta.json" .toString!)
-geojson = topojson-client.feature topo, topo.objects.pdmaptw
+# town files keep the historical `<county>.topo.json` name; village files get an explicit
+# suffix. see `build` for the `pdmaptw.register` type each one ends up with.
+suffix = town: '', village: '.village'
 
-generate = (name) ->
-  console.log "generating topojson for #{name} ..."
+generate = (lv, geojson, meta, name) ->
   features = geojson.features.filter (f) -> meta.name[f.properties.c] in [name]
   if !features.length =>
-    console.error "no features found for county #{name}. skipped."
+    console.error "  no #lv features found for county #{name}. skipped."
     return
   filtered-geojson = {pdmaptw: {type: \FeatureCollection, features}}
   # `topology` takes the quantization factor as a plain number. passing an object
   # here silently disabled quantization and made these files ~200x bigger than needed.
   topology = topojson.topology filtered-geojson, 1e5
-  fs.ensure-dir-sync "src/topojson/county"
-  fs.write-file-sync "src/topojson/county/#{name}.topo.json", JSON.stringify(topology)
+  fn = "src/topojson/county/#{name}#{suffix[lv]}.topo.json"
+  fs.write-file-sync fn, JSON.stringify(topology)
+  console.log "  #{name}: #{features.length} features -> #fn"
 
-names.map (n) -> generate n
+fs.ensure-dir-sync "src/topojson/county"
+levels.map (lv) ->
+  if !suffix[lv]?  =>
+    console.error "unknown level #lv. skipped."
+    return
+  console.log "splitting #lv by county ..."
+  topo = JSON.parse(fs.read-file-sync "src/topojson/#lv.topo.json" .toString!)
+  meta = JSON.parse(fs.read-file-sync "src/topojson/#lv.meta.json" .toString!)
+  geojson = topojson-client.feature topo, topo.objects.pdmaptw
+  names.map (n) -> generate lv, geojson, meta, n
