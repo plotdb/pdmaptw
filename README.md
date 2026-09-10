@@ -131,6 +131,7 @@ Alternatively, execute the script manually:
     ./node_modules/.bin/lsc convert.ls
     ./node_modules/.bin/lsc filter.ls
     ./build
+    ./node_modules/.bin/lsc release.ls
     ./node_modules/.bin/lsc verify.ls
 
 Past releases are kept under `archive/` — see `archive/README.md`. The government only
@@ -154,12 +155,16 @@ What the above commands do:
    villages. `-n <county>` limits it to one county and `-l <level>` to one level, which is
    useful while tuning.
  - `build` build the utility js `twmap` for frontend rendering.
- - `verify.ls` checks what landed in `dist/`, and `npm run build` finishes by running it.
+ - `release.ls` writes the open data files into `release/` and refreshes `manifest.json` —
+   see [Open Data](#open-data).
+ - `verify.ls` checks what landed in `dist/` and in `release/`, and `npm run build` finishes
+   by running it.
    It loads the built files the way a browser does and asserts the things that broke in
    past rebuilds: every feature carries a code of the right length, the codes nest, no
    geometry covers the whole sphere, the smallest district survived filtering, every county
    has both of its subfiles and they add up to the national totals, no file is unexpectedly
-   large, and `init` / `fit` / `choropleth` / `hover` still work in a jsdom page. Run it on
+   large, the release manifest matches the bytes on disk and covers every region in every
+   format, and `init` / `fit` / `choropleth` / `hover` still work in a jsdom page. Run it on
    its own with `npm run verify`.
  - `tool/build.sh` will process all shp files and convert them to geojson, topojson and sample svg.
    - for getting topojson, simply use `convert.ls` directly.
@@ -210,6 +215,64 @@ A handful of the smallest urban 里 collapse to nothing during simplification. T
 kept as features with an empty geometry, so a join on `code` still finds them — they just
 draw no visible shape. Unnamed islets ( `未編定村里` ) are dropped entirely.
 
+## Open Data
+
+The boundaries are also published as plain files, for use outside this library. They are
+attached to each [GitHub release](https://github.com/plotdb/pdmaptw/releases), and
+`manifest.json` in this repo lists every one of them:
+
+    {
+      "version": "2.4.0",
+      "tag": "v2.4.0",
+      "source": {"village": {"file": "VILLAGE_NLSC_1150817", "date": "2026-08-17"}, ...},
+      "license": {...},
+      "files": [
+        {"level": "village", "scope": "66000", "scope_name": "臺中市", "format": "geojson",
+         "projection": "wgs84", "name": "village-66000-2026-08-17.geojson",
+         "size": 284119, "sha256": "...", "url": "https://github.com/..."}
+      ]
+    }
+
+A download page should read `manifest.json` rather than hardcode a file list — new formats
+and new data releases then need no change on the consuming side. It is included in the npm
+package too, so it can be fetched from a CDN.
+
+Formats:
+
+ - GeoJSON, EPSG:4326. Properties are `code`, `name`, `county`, `town`, `village`.
+ - SVG. One `<path>` per region, `id` is the 行政區代碼 and `data-name` the Chinese name,
+   grouped into a `<g>` per county. Drawn into a 1000-unit-wide `viewBox` with no fill, so
+   it can be styled as-is.
+ - CSV, one row per region at every level: code, level, name, the three name parts, an
+   anchor point for labels, and area.
+
+Each level comes as one national file plus one file per county. File names carry the county
+code and the source release date, e.g. `village-66000-2026-08-17.geojson` — GitHub rewrites
+non-ASCII asset names, which would collapse every Chinese county name onto the same string.
+
+Three things to know before using them:
+
+ - The SVG files use the same projection the library draws with, which pulls 澎湖 / 金門 /
+   馬祖 / 釣魚臺 / 彭佳嶼 in towards the main island so a statistical map has no empty
+   corners. The shapes are therefore not where they are on the earth. Use the GeoJSON when
+   real positions matter. The note is repeated inside every SVG file, since a downloaded
+   file gets separated from the page that explained it.
+ - The boundaries are simplified for drawing at national scale. They are not suitable for
+   measurement or overlay analysis; the source data is at
+   [data.gov.tw](https://data.gov.tw/dataset/7442).
+ - `area_km2` in the CSV is computed from the source geometry before simplification — the
+   simplified shapes lose small islands, which costs 連江縣 a fifth of its area. It is the
+   spherical area of the published boundary, and still differs from 內政部's published land
+   area statistics by a few percent.
+
+Names in these files are as the government writes them ( 臺中市, not 台中市 ), so a code or
+a name joins against other government datasets as-is. The JavaScript API normalizes 臺 to 台
+at runtime; that is a display convenience of the library, not of the data.
+
+Build them with `npm run release` ( `npm run build` does it as part of the pipeline ), which
+writes `release/` and refreshes `manifest.json`. `npm run release:publish` uploads the lot to
+a GitHub release tagged with the current version, using `release/NOTES.md` as the body.
+
 ## 詳細產製流程
 
  * 取得 shp files. 
@@ -251,5 +314,11 @@ draw no visible shape. Unnamed islets ( `未編定村里` ) are dropped entirely
 
 ## License
 
-Source code: MIT
+Source code: MIT.
+
+The boundary data is derived from 內政部 / 內政部國土測繪中心 releases published on
+data.gov.tw under 政府資料開放授權條款第 1 版 ( Open Government Data License, version 1.0 ).
+Everything under `dist/`, `src/topojson/` and the open data release is a derivative work of
+that data and carries the same terms, which require attribution. `meta.source` and
+`manifest.json` record exactly which government release each file was built from.
 

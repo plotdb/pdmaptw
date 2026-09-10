@@ -60,6 +60,17 @@ clean = (topo) ->
   .filter -> it
   topojson.topology {pdmaptw: {type: \FeatureCollection, features}}, 1e5
 
+# the centroid of the largest polygon, not of the whole feature: a feature made of
+# scattered islands has its spherical centroid out at sea, which is useless as a label
+# position.
+anchor = (g) ->
+  polygons = if g.type == \MultiPolygon => g.coordinates else [g.coordinates]
+  biggest = polygons
+    .map (p) -> {p, a: d3.geoArea {type: \Polygon, coordinates: p}}
+    .sort (a, b) -> b.a - a.a
+    .0.p
+  d3.geoCentroid {type: \Polygon, coordinates: biggest}
+
 proc = (lv) ->
   name = null
   Promise.resolve!
@@ -103,6 +114,21 @@ proc = (lv) ->
         # always derive a coarser code with `code.substring(0, 5)` / `(0, 8)`.
         code = p.VILLCODE or p.TOWNCODE or p.COUNTYCODE
         if code => q.code = code
+
+      # area and anchor point are computed here, from the untouched source geometry:
+      # simplification drops small islands, which costs 連江縣 a fifth of its area, and a
+      # density map built on that number would be quietly wrong. not shipped in dist -
+      # `release.ls` reads it for the published lookup table.
+      stat = {}
+      divisions.features.map (d) ->
+        code = d.properties.code
+        if !code or !d.geometry => return
+        [lng, lat] = anchor d.geometry
+        stat[code] =
+          area: +(d3.geoArea(d) * 6371.0088 * 6371.0088).to-fixed 4
+          lng: +lng.to-fixed 6
+          lat: +lat.to-fixed 6
+      fs.write-file-sync "src/topojson/#lv.stat.json", JSON.stringify(stat)
 
       topo = topojson.topology {pdmaptw: divisions}, 1e5
       topo = topojson.presimplify topo

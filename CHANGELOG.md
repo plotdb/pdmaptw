@@ -2,6 +2,14 @@
 
 ## v2.4.0
 
+ - publish the boundaries as open data: `release.ls` ( `npm run release` ) writes GeoJSON,
+   SVG and a CSV lookup table into `release/`, one national file plus one per county at each
+   level, and refreshes `manifest.json`. The files go out as GitHub release assets
+   ( `npm run release:publish` ); `manifest.json` is committed and shipped on npm so a
+   download page can read the file list instead of hardcoding it.
+ - `convert.ls` now also writes `src/topojson/<level>.stat.json`: area and a label anchor
+   point computed on the source geometry, before simplification drops the small islands.
+   Not shipped in `dist`; the published CSV is built from it.
  - village maps are now also split per county: `dist/county/<縣市名>.village.map.js`,
    registered as type `county/<縣市名>/village`. A county's villages are 30 ~ 220KB against
    1.8MB for the whole country.

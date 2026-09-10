@@ -1,0 +1,1558 @@
+{
+  "name": "pdmaptw",
+  "version": "2.4.0",
+  "tag": "v2.4.0",
+  "source": {
+    "county": {
+      "level": "county",
+      "file": "COUNTY_MOI_1140318",
+      "date": "2025-03-18"
+    },
+    "town": {
+      "level": "town",
+      "file": "TOWN_MOI_1140318",
+      "date": "2025-03-18"
+    },
+    "village": {
+      "level": "village",
+      "file": "VILLAGE_NLSC_1150817",
+      "date": "2026-08-17"
+    }
+  },
+  "license": {
+    "data": "政府資料開放授權條款第 1 版",
+    "data_url": "https://data.gov.tw/license",
+    "attribution": "內政部 / 內政部國土測繪中心",
+    "code": "MIT"
+  },
+  "notes": {
+    "projection": {
+      "wgs84": "EPSG:4326 經緯度，真實地理位置。",
+      "compact": "離島位置經過位移以利統計圖表呈現，非真實地理位置。"
+    },
+    "area": "area_km2 為原始界線多邊形的球面面積，非簡化後的幾何；與內政部公布的土地面積統計仍有數個百分點以內的差異。",
+    "anchor": "lng / lat 為該行政區最大一塊多邊形的中心，適合作標籤定位，不是幾何重心，也不保證位於陸地上。"
+  },
+  "files": [
+    {
+      "level": "county",
+      "source": {
+        "level": "county",
+        "file": "COUNTY_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "format": "geojson",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "wgs84",
+      "name": "county-2025-03-18.geojson",
+      "size": 55728,
+      "sha256": "a809e483184d7762918476058cc9d7e10e9720113187afee2a04b4f7ced3103f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/county-2025-03-18.geojson"
+    },
+    {
+      "level": "county",
+      "source": {
+        "level": "county",
+        "file": "COUNTY_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "format": "svg",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "compact",
+      "name": "county-2025-03-18.svg",
+      "size": 33575,
+      "sha256": "9011478e67aa2b0df67d8a666a7b0ae2a10c17275e3e4212739535f7ed55f8d2",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/county-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "format": "geojson",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "wgs84",
+      "name": "town-2025-03-18.geojson",
+      "size": 345906,
+      "sha256": "2897bc4f85e2f8c38a88a0f71eaeeeed27f3a13233f42fe9900a981de7a53c82",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "format": "svg",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "compact",
+      "name": "town-2025-03-18.svg",
+      "size": 191134,
+      "sha256": "e18410f84cf323484c87ea4f63da47344effd0c27c28dd5383ec0e41ef98a66e",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-2025-03-18.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "format": "geojson",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "wgs84",
+      "name": "village-2026-08-17.geojson",
+      "size": 3840451,
+      "sha256": "1a4fe090ee3056519e27b23dee35226af04c0d0482c4699d5c9b3ed6ad65078e",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "format": "svg",
+      "scope": "all",
+      "scope_name": "全國",
+      "projection": "compact",
+      "name": "village-2026-08-17.svg",
+      "size": 1843906,
+      "sha256": "bf47f750b72e538ca40ebd9a187d71d8b6431c8308bb79ef520cd8fdf540ebc6",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-2026-08-17.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "09007",
+      "scope_name": "連江縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-09007-2025-03-18.geojson",
+      "size": 2471,
+      "sha256": "69067aa45b9b6c85cd7af20e6493dfff83fa16dc9ea23c0a3dc69c623240e5d4",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-09007-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "09007",
+      "scope_name": "連江縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-09007-2025-03-18.svg",
+      "size": 1802,
+      "sha256": "ab6f959524cbeb81a3f1d7d2b850070f960635815d85a9cd7c46f2dc541be778",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-09007-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10002",
+      "scope_name": "宜蘭縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10002-2025-03-18.geojson",
+      "size": 15998,
+      "sha256": "ee5e35b6cc992fd82c31ed903f122675595638f4e5693c2a1495ecb00f8ebcf5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10002-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10002",
+      "scope_name": "宜蘭縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10002-2025-03-18.svg",
+      "size": 9730,
+      "sha256": "b570c98b5dd8bce6ca907123efb265187c6ecf8fe09f1c8647dead8f5d3a46be",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10002-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10007",
+      "scope_name": "彰化縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10007-2025-03-18.geojson",
+      "size": 18633,
+      "sha256": "d78ccfe7b182c374484bcc942fee6f9b62583e4f0cd1c11185b598dddda51122",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10007-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10007",
+      "scope_name": "彰化縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10007-2025-03-18.svg",
+      "size": 10473,
+      "sha256": "322112516c14b062852f2543203299320c16000f447ce1d6bd6a3eb96f3dc10e",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10007-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10008",
+      "scope_name": "南投縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10008-2025-03-18.geojson",
+      "size": 19515,
+      "sha256": "594c062e41088b16a2d6671000cddde5000b62c012d2444d3a8019cd1437c7ba",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10008-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10008",
+      "scope_name": "南投縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10008-2025-03-18.svg",
+      "size": 11643,
+      "sha256": "cf376066c0250fab98526199a1202a7d47b8ec7c5b05c0f09ee375a645e9897f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10008-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10009",
+      "scope_name": "雲林縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10009-2025-03-18.geojson",
+      "size": 18764,
+      "sha256": "bb1caf40bfbeb3257a69c0bd513f8c16a7cb60025b8181c606c76ee6235ffadd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10009-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10009",
+      "scope_name": "雲林縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10009-2025-03-18.svg",
+      "size": 10774,
+      "sha256": "16405ad36d4b0101cf5226fa37203628b9fc85dc7e7e1b38dafbac1b0a0d08b5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10009-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10013",
+      "scope_name": "屏東縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10013-2025-03-18.geojson",
+      "size": 29618,
+      "sha256": "2eda549deee705a07a60a7eab4018ba566b1cd4a4af975a8ad5bc32a4f2cc14b",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10013-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10013",
+      "scope_name": "屏東縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10013-2025-03-18.svg",
+      "size": 16980,
+      "sha256": "5b64145d6741d177589d9562a55c986c53cbfa31aec2813f054d0f142e1fd495",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10013-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10017",
+      "scope_name": "基隆市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10017-2025-03-18.geojson",
+      "size": 4104,
+      "sha256": "dc2653e5ef6eeedeba88e0af6102b23d1b8af549b13c4160c611f08fab998179",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10017-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10017",
+      "scope_name": "基隆市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10017-2025-03-18.svg",
+      "size": 2681,
+      "sha256": "6c9fc4d6ff1bb4c3cdaebe42ae81f66eacb9e3a9619c06138b527e966eb87721",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10017-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "63000",
+      "scope_name": "臺北市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-63000-2025-03-18.geojson",
+      "size": 7188,
+      "sha256": "25adc425a49b689f9bae0e6081eba1ecf04d73f157968d7b72e5e4cb6e33a0ad",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-63000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "63000",
+      "scope_name": "臺北市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-63000-2025-03-18.svg",
+      "size": 4332,
+      "sha256": "6d660dc2b81f8f8171bd8c07b598e1d0a76c529173c066c7ce7e32f8a667a94d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-63000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "65000",
+      "scope_name": "新北市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-65000-2025-03-18.geojson",
+      "size": 25573,
+      "sha256": "0b8a56613f2852cabd61e96ff0248cae6fd07ae8e8cb398b620956f8fab8600c",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-65000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "65000",
+      "scope_name": "新北市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-65000-2025-03-18.svg",
+      "size": 14506,
+      "sha256": "2b4bf6873f0c90435e96e93609450e06d7760120fccd552dba0c7377cf3f7fa6",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-65000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "67000",
+      "scope_name": "臺南市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-67000-2025-03-18.geojson",
+      "size": 31301,
+      "sha256": "3138fe3cd9e59814069e23fc20ab7b4e09d8e1e2dc5130e929cf6a9a053d70a0",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-67000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "67000",
+      "scope_name": "臺南市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-67000-2025-03-18.svg",
+      "size": 17481,
+      "sha256": "200f8fc5c3cffbe8eb72deda42ca9f4c0006bf893c5ccbd65e18acefba4acd01",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-67000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "68000",
+      "scope_name": "桃園市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-68000-2025-03-18.geojson",
+      "size": 12996,
+      "sha256": "4d67042dfaaae1f95699b27b962c1b91718494817446fe026d0f1c530b8a90da",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-68000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "68000",
+      "scope_name": "桃園市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-68000-2025-03-18.svg",
+      "size": 7797,
+      "sha256": "982eb8d988fff14064beb75a62888c9de8f838f883953e10698ebc69f1437ebf",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-68000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10020",
+      "scope_name": "嘉義市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10020-2025-03-18.geojson",
+      "size": 1420,
+      "sha256": "d6897cf2890d5572bead112de91628f60ff01383f42337e3b90a58b687350e42",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10020-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10020",
+      "scope_name": "嘉義市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10020-2025-03-18.svg",
+      "size": 1351,
+      "sha256": "78e33b38c170d78004dbac320e8137a0900d89eae18e6c4fc9b9970d9950a066",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10020-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10010",
+      "scope_name": "嘉義縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10010-2025-03-18.geojson",
+      "size": 20633,
+      "sha256": "d48035db6c8d838ff3ace22907edaa5ade6df6709f16e915ef4452703d5ebe86",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10010-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10010",
+      "scope_name": "嘉義縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10010-2025-03-18.svg",
+      "size": 11969,
+      "sha256": "f12c466d3bf2a4c90b3ee83fd38c3ff8fa0141d6a35d238bf901ae47995790eb",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10010-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "09020",
+      "scope_name": "金門縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-09020-2025-03-18.geojson",
+      "size": 3857,
+      "sha256": "3c171720e657cdfed2dd92e6e267bfd155f3861f849594849abcf6bf767b7501",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-09020-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "09020",
+      "scope_name": "金門縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-09020-2025-03-18.svg",
+      "size": 2640,
+      "sha256": "fd0e6e5660c53abf0333981bf0c0b4d66edb84a3c40abca03882f4a21c7946a9",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-09020-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "64000",
+      "scope_name": "高雄市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-64000-2025-03-18.geojson",
+      "size": 31220,
+      "sha256": "a0f6164ed422c733ad2f2427a4ca50132e7ba5ef225f6f3df1ee0267da7b0a9d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-64000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "64000",
+      "scope_name": "高雄市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-64000-2025-03-18.svg",
+      "size": 17386,
+      "sha256": "b0e280be56857c9e5592d3b8927317dcac8fc6b15a87baccb221f324756e318d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-64000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10014",
+      "scope_name": "臺東縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10014-2025-03-18.geojson",
+      "size": 21800,
+      "sha256": "e1febd28ad7469b4fa710e8101ad286247df9f635ce53b390b80af4218d5f7ca",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10014-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10014",
+      "scope_name": "臺東縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10014-2025-03-18.svg",
+      "size": 13035,
+      "sha256": "344afc0dbbabd5bcba10ad5906333059a12eea92adf32255d77385a6e8bc57f4",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10014-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10015",
+      "scope_name": "花蓮縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10015-2025-03-18.geojson",
+      "size": 20782,
+      "sha256": "b742941ce7c3a348d831ef5a482d8cd6ab54b477d0884f20e6e6da1210ca228b",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10015-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10015",
+      "scope_name": "花蓮縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10015-2025-03-18.svg",
+      "size": 12760,
+      "sha256": "5cb6cc389bf3a5c4bd9046b7f2a217f1a9386fac6333199c6ca9d2d68c4ea278",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10015-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10016",
+      "scope_name": "澎湖縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10016-2025-03-18.geojson",
+      "size": 6065,
+      "sha256": "90e8c83217631656fe2a9324b36bbbdd9305a00d15a60dd8a715bc50f311eab0",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10016-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10016",
+      "scope_name": "澎湖縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10016-2025-03-18.svg",
+      "size": 3842,
+      "sha256": "056b3d8a954a205f1ad24692ea29cca8e7aba0e37b64c912364f83487dc35860",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10016-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10018",
+      "scope_name": "新竹市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10018-2025-03-18.geojson",
+      "size": 2382,
+      "sha256": "9498998dccec47b9270d55305c387cb5cf14253c22ab6e98648d800165baf5f4",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10018-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10018",
+      "scope_name": "新竹市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10018-2025-03-18.svg",
+      "size": 1885,
+      "sha256": "95809416c1c50c082c7a792b867359df61bcc1bf21b80fbd44d06c8e839b789f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10018-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "66000",
+      "scope_name": "臺中市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-66000-2025-03-18.geojson",
+      "size": 22816,
+      "sha256": "a80dacedc1c5c16a6c8626fcfd8130ed2a44ba9b80668bb8fa791ff9801da91d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-66000-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "66000",
+      "scope_name": "臺中市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-66000-2025-03-18.svg",
+      "size": 12791,
+      "sha256": "6f153f7fd4f26ec39be002981ebb637c6dd8ee8a4ba2359afae367c8568a47b8",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-66000-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10005",
+      "scope_name": "苗栗縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10005-2025-03-18.geojson",
+      "size": 16891,
+      "sha256": "8009d192a9f5019917f89dc636e4bd0f029f0c5f6048b7a3a03c6e3b3030612f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10005-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10005",
+      "scope_name": "苗栗縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10005-2025-03-18.svg",
+      "size": 9776,
+      "sha256": "52d2fbb58660742dc6877de2147654a6fb158cce2ed0010eab63a8356d00b1aa",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10005-2025-03-18.svg"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10004",
+      "scope_name": "新竹縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "town-10004-2025-03-18.geojson",
+      "size": 12740,
+      "sha256": "388cd8fc5518d02bfc4e8cb3d7ee794427587e2521633a99cb57bd968a6235dd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10004-2025-03-18.geojson"
+    },
+    {
+      "level": "town",
+      "source": {
+        "level": "town",
+        "file": "TOWN_MOI_1140318",
+        "date": "2025-03-18"
+      },
+      "scope": "10004",
+      "scope_name": "新竹縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "town-10004-2025-03-18.svg",
+      "size": 7560,
+      "sha256": "ff9cd02cc794a4dc65ee2963cf3327f187dfc5eab7e09151594e9cb28d4fa5c2",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/town-10004-2025-03-18.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "09007",
+      "scope_name": "連江縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-09007-2026-08-17.geojson",
+      "size": 13585,
+      "sha256": "d01721008dd1e8d1e5e1b4e467bb6e2766645a3ecc676b68345179264b5d38a4",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-09007-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "09007",
+      "scope_name": "連江縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-09007-2026-08-17.svg",
+      "size": 6096,
+      "sha256": "ceb05b82de0a178b8676a76204e3254b596a49a5bab5f89f596cfd666983e021",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-09007-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10002",
+      "scope_name": "宜蘭縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10002-2026-08-17.geojson",
+      "size": 138943,
+      "sha256": "37edef731398e393ce53627faf50a5ee49430e650ae0ea5dfe6c94bdde017174",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10002-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10002",
+      "scope_name": "宜蘭縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10002-2026-08-17.svg",
+      "size": 70104,
+      "sha256": "ceb656c9f767660cd0afd2e4f1806f10f6f4e40b1240276ba8b4f60f1444e9ef",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10002-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10007",
+      "scope_name": "彰化縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10007-2026-08-17.geojson",
+      "size": 263190,
+      "sha256": "b11215c0f79e9d395c1cb02af59e142e0f4214144ce21e83524a7d050a72294c",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10007-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10007",
+      "scope_name": "彰化縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10007-2026-08-17.svg",
+      "size": 123562,
+      "sha256": "924f06c62d4d5568e74b7c9cdafbd79e2b562422d5eab0469cac3a38f58b9fe3",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10007-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10008",
+      "scope_name": "南投縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10008-2026-08-17.geojson",
+      "size": 180382,
+      "sha256": "4b85382bf681157d33a79ca56f9dc39a370ddc2e5095f69a73fcf79aa68ec72d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10008-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10008",
+      "scope_name": "南投縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10008-2026-08-17.svg",
+      "size": 92896,
+      "sha256": "64eca80284c53ba8e39b1124f46f96077ada0082b57192b0050b1512ffe6a744",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10008-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10009",
+      "scope_name": "雲林縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10009-2026-08-17.geojson",
+      "size": 200284,
+      "sha256": "e3143602e9ab19dff19eb05002a285cade6104f9ccbb9c63f907c1450133fb7a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10009-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10009",
+      "scope_name": "雲林縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10009-2026-08-17.svg",
+      "size": 97197,
+      "sha256": "9cd3a3a32e09a89cc01d9d4b34e7ec2f28449e990fa549e0efae361e94827762",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10009-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10013",
+      "scope_name": "屏東縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10013-2026-08-17.geojson",
+      "size": 244853,
+      "sha256": "53de202a286056df3e8a034c6bbe4b9b1714aaaf0ff9b7a22e18d3515650dfa9",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10013-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10013",
+      "scope_name": "屏東縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10013-2026-08-17.svg",
+      "size": 122586,
+      "sha256": "10992d7e4f651dc91d0623d8d6ad15441e4a4c89974a879c83646617315a7544",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10013-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10017",
+      "scope_name": "基隆市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10017-2026-08-17.geojson",
+      "size": 64905,
+      "sha256": "8d57c1c947e13ad12fd2dd3eba67ce1eb2baec730a83ba3bf11c03fff3e1aa15",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10017-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10017",
+      "scope_name": "基隆市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10017-2026-08-17.svg",
+      "size": 29830,
+      "sha256": "d0340e12b1832a4896afb202fbf58a2e4c52eb0ef8379a6dc7f030c8b91436aa",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10017-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "63000",
+      "scope_name": "臺北市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-63000-2026-08-17.geojson",
+      "size": 171305,
+      "sha256": "1467a9e3140d74e074ebfbeee0723e9849bb6b02a9e4c3bfaab9f56c1889b13d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-63000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "63000",
+      "scope_name": "臺北市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-63000-2026-08-17.svg",
+      "size": 76492,
+      "sha256": "2f16a1ca6361ac5935f91f9939b06dc2429f28b44f5ae43190fc6a89cd24953c",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-63000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "65000",
+      "scope_name": "新北市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-65000-2026-08-17.geojson",
+      "size": 454091,
+      "sha256": "3b976fcf6a2a2618b341f8b6220754b60f18ffc1a82dd7112061d7aea77fd900",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-65000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "65000",
+      "scope_name": "新北市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-65000-2026-08-17.svg",
+      "size": 210380,
+      "sha256": "f2e10ef53ce0d77d347b6bdb071fe109204bc865f9d86cc06c139fdb47b4c715",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-65000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "67000",
+      "scope_name": "臺南市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-67000-2026-08-17.geojson",
+      "size": 321953,
+      "sha256": "5746d2dd1d05a2444b8b9c991cb63baed7cd2ed3530bf6e84199107a5e50bbeb",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-67000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "67000",
+      "scope_name": "臺南市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-67000-2026-08-17.svg",
+      "size": 155244,
+      "sha256": "ee2340bfe238f98434737e84cfac0f98bd3cc2bf434a5a94cbdbe1761f16d15a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-67000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "68000",
+      "scope_name": "桃園市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-68000-2026-08-17.geojson",
+      "size": 241090,
+      "sha256": "e765c04a5f99a4d72c3f5331e3b322790f5c94e4caad382cd9508428ba601ed0",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-68000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "68000",
+      "scope_name": "桃園市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-68000-2026-08-17.svg",
+      "size": 113964,
+      "sha256": "6477c1ac9050176b7a83ead49fb67fca36d3a07fb4729bf92a7e57c7f6e24b77",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-68000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10020",
+      "scope_name": "嘉義市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10020-2026-08-17.geojson",
+      "size": 31959,
+      "sha256": "8a0eb3e88f7cccd4a3e358566d5065dc6c9ff3a2d79b3f03e3ff12d43dd93b0a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10020-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10020",
+      "scope_name": "嘉義市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10020-2026-08-17.svg",
+      "size": 14813,
+      "sha256": "25cced93d0fd52c9eab4756aed371c480fa2d46765538b5aa7fbf6944bbff428",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10020-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10010",
+      "scope_name": "嘉義縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10010-2026-08-17.geojson",
+      "size": 199198,
+      "sha256": "13ad32bef836a17f010ed190f92cf5d2ea21e27f2b99bf979ffe0f3e7a916ae1",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10010-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10010",
+      "scope_name": "嘉義縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10010-2026-08-17.svg",
+      "size": 98010,
+      "sha256": "41c4f98215d00864fa46a8efbef83e93b675ddefc565ec5b75935927ec0be978",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10010-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "09020",
+      "scope_name": "金門縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-09020-2026-08-17.geojson",
+      "size": 20778,
+      "sha256": "6de5bba91e4575e8dc77930f865b0e211c10047c903673769d87352d2fe81f90",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-09020-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "09020",
+      "scope_name": "金門縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-09020-2026-08-17.svg",
+      "size": 10895,
+      "sha256": "05e05719115554235f177879e3a3a149768d696b5aec22e944110652cb72a27e",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-09020-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "64000",
+      "scope_name": "高雄市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-64000-2026-08-17.geojson",
+      "size": 407275,
+      "sha256": "2650cfed27fac95069c79ebce4b6dfd0534bb83ef3feb23280caf7ec6dcac4e8",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-64000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "64000",
+      "scope_name": "高雄市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-64000-2026-08-17.svg",
+      "size": 191424,
+      "sha256": "b844ee5a7e696497c9276da95705654cac03feca26d9871a343a982c54a1d9f5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-64000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10014",
+      "scope_name": "臺東縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10014-2026-08-17.geojson",
+      "size": 110822,
+      "sha256": "eadd6faa02905af1d0eea1c7f5b25f961fa18ccbbd7d3abcd31b8825dc827e28",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10014-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10014",
+      "scope_name": "臺東縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10014-2026-08-17.svg",
+      "size": 59476,
+      "sha256": "1a0fbb06df8a5e2894f33d14382c35802966241143fd0eeef3b960e6807141bb",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10014-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10015",
+      "scope_name": "花蓮縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10015-2026-08-17.geojson",
+      "size": 132155,
+      "sha256": "7e6888b6fdaeff130dec912decdec4235e63d269f739a82b4f093ae16abd83fd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10015-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10015",
+      "scope_name": "花蓮縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10015-2026-08-17.svg",
+      "size": 70725,
+      "sha256": "acffbd36f9267ab5ef7fcdc98eb0111ac8bf261f8f1486f30a01cda372363f06",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10015-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10016",
+      "scope_name": "澎湖縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10016-2026-08-17.geojson",
+      "size": 43939,
+      "sha256": "29c525fef1f9f44a363811df3b31948a75fc3c603f16cfc403dc49ab3a104204",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10016-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10016",
+      "scope_name": "澎湖縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10016-2026-08-17.svg",
+      "size": 20538,
+      "sha256": "b84c89872618784c68635915e4611a5c1d58a01ca3453c407dcf3ef8ba9f79fd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10016-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10018",
+      "scope_name": "新竹市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10018-2026-08-17.geojson",
+      "size": 49717,
+      "sha256": "cb2488c3049f244bb02c4ff4f353181f0d6a9f013fcb4999aa99f9f3789c62cb",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10018-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10018",
+      "scope_name": "新竹市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10018-2026-08-17.svg",
+      "size": 23161,
+      "sha256": "cd6382f14dc152ce3ac9b2f5a08a84e509188527f6587b27103ac4fa2eef0dcf",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10018-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "66000",
+      "scope_name": "臺中市",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-66000-2026-08-17.geojson",
+      "size": 284158,
+      "sha256": "c2f8d634a3c5a6a7045f778c98949a6e3b705f40b43ad365e4d63e2cbf9fc6dd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-66000-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "66000",
+      "scope_name": "臺中市",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-66000-2026-08-17.svg",
+      "size": 133350,
+      "sha256": "660a56056cf0f5ddf36d40d2d67040bac258497ef72a7a04215c1c5ead5139cc",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-66000-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10005",
+      "scope_name": "苗栗縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10005-2026-08-17.geojson",
+      "size": 156142,
+      "sha256": "885cd9e9c777001b7b83685cadbc4f62c37697f76f19839b83bd09a89f776d7f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10005-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10005",
+      "scope_name": "苗栗縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10005-2026-08-17.svg",
+      "size": 77534,
+      "sha256": "61de93d11184e69b83c6142c1dd2d2abe645b66e5d438f495036998a45656758",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10005-2026-08-17.svg"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10004",
+      "scope_name": "新竹縣",
+      "format": "geojson",
+      "projection": "wgs84",
+      "name": "village-10004-2026-08-17.geojson",
+      "size": 110588,
+      "sha256": "5f4392e075417606c8fecc4837ce71538426167079e15735fe815b32ec34ccd8",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10004-2026-08-17.geojson"
+    },
+    {
+      "level": "village",
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "scope": "10004",
+      "scope_name": "新竹縣",
+      "format": "svg",
+      "projection": "compact",
+      "name": "village-10004-2026-08-17.svg",
+      "size": 55478,
+      "sha256": "76c1189be79112a5bd27c91b2c1a22ee7069b667811d69b15c64a3ee0dc10b30",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/village-10004-2026-08-17.svg"
+    },
+    {
+      "level": "all",
+      "scope": "all",
+      "scope_name": "全國",
+      "format": "csv",
+      "projection": null,
+      "source": {
+        "level": "village",
+        "file": "VILLAGE_NLSC_1150817",
+        "date": "2026-08-17"
+      },
+      "name": "regions-2026-08-17.csv",
+      "size": 859327,
+      "sha256": "ec442ae7cf4a8d379db4b1554677c18b7d2671ea25d2f6669c5f3a0fc1fca5cd",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.4.0/regions-2026-08-17.csv"
+    }
+  ]
+}

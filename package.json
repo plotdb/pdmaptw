@@ -7,7 +7,8 @@
   "browser": "dist/index.min.js",
   "main": "dist/index.min.js",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "manifest.json"
   ],
   "homepage": "https://github.com/plotdb/pdmaptw",
   "repository": {
@@ -21,8 +22,10 @@
   "scripts": {
     "deploy": "npx deploy web/static",
     "start": "npx server -r web -o true",
-    "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./node_modules/.bin/lsc ./filter.ls; ./build; npm run verify",
-    "verify": "./node_modules/.bin/lsc ./verify.ls"
+    "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./node_modules/.bin/lsc ./filter.ls; ./build; npm run release; npm run verify",
+    "verify": "./node_modules/.bin/lsc ./verify.ls",
+    "release": "./node_modules/.bin/lsc ./release.ls",
+    "release:publish": "gh release create v$npm_package_version --title \"pdmaptw v$npm_package_version\" --notes-file release/NOTES.md release/manifest.json release/*.geojson release/*.svg release/*.csv"
   },
   "devDependencies": {
     "@loadingio/bootstrap.ext": "^0.0.9",

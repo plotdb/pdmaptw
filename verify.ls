@@ -6,6 +6,8 @@
 # quantization argument silently ignored. run it after every `npm run build`.
 require! <[fs path topojson-client d3-geo]>
 
+pkg = JSON.parse (fs.read-file-sync 'package.json').toString!
+
 reg = {}
 global.topojson = topojson-client
 global.pdmaptw = register: (type, data) -> reg[type] = data
@@ -135,6 +137,59 @@ ok big.length == 0, "no county file over 512KB#{show big.map(-> "#{it.n} #{Math.
   fn = "dist/#lv.map.js"
   if !fs.exists-sync fn => info "#fn: missing"
   else info "#fn: #{Math.round fs.stat-sync(fn).size / 1024}KB"
+
+# the open data release. these files leave the project and get linked to from elsewhere,
+# so the checks are about them being self-consistent and honestly described: the manifest
+# has to match what is on disk byte for byte, and every region has to appear in every
+# format at the level it belongs to.
+console.log "\nopen data release:"
+if !fs.exists-sync 'release/manifest.json' =>
+  console.log "  -- skipped: release/ not built ( npm run release )"
+else
+  manifest = JSON.parse (fs.read-file-sync 'release/manifest.json').toString!
+  crypto = require \crypto
+  on-disk = fs.readdir-sync 'release' .filter -> it not in <[manifest.json NOTES.md]>
+  ok manifest.files.length == on-disk.length,
+    "manifest lists every file in release/ ( #{manifest.files.length} vs #{on-disk.length} )"
+  bad = manifest.files.filter (f) ->
+    fn = "release/#{f.name}"
+    if !fs.exists-sync fn => return true
+    buf = fs.read-file-sync fn
+    buf.length != f.size or crypto.create-hash \sha256 .update buf .digest(\hex) != f.sha256
+  ok bad.length == 0, "every size and sha256 matches the file on disk#{show (bad.map -> it.name)}"
+  # github sanitizes release asset names, which would turn every chinese county name into
+  # the same string. the file names carry codes for that reason - check they stayed ascii.
+  odd-names = [f.name for f in manifest.files when !/^[\x20-\x7e]+$/.exec f.name]
+  ok odd-names.length == 0, "every file name is ascii#{show odd-names}"
+  ok (manifest.version == pkg.version and manifest.tag == "v#{pkg.version}"),
+    "manifest points at the current version ( #{manifest.tag} )"
+
+  # a region missing from one format only would be invisible on a download page.
+  counts = {}
+  manifest.files.filter(-> it.format in <[geojson svg]>).map (f) ->
+    features = if f.format == \geojson
+      then JSON.parse((fs.read-file-sync "release/#{f.name}").toString!).features.length
+      else ((fs.read-file-sync "release/#{f.name}").toString!.match(/<path /g) or []).length
+    (counts["#{f.level}/#{f.scope}"] ?= {})[f.format] = features
+  # svg leaves out the features whose geometry collapsed during simplification, so it is
+  # allowed to have fewer paths - never more, and never a different set of files.
+  uneven = [k for k, v of counts when !(v.geojson? and v.svg?) or v.svg > v.geojson]
+  ok uneven.length == 0, "geojson and svg cover the same regions#{show uneven}"
+  totals = <[county town village]>.map (lv) -> counts["#lv/all"]?.geojson
+  expect = <[county town village]>.map (lv) -> Object.keys(national[lv] or {}).length
+  ok (totals.join '/') == (expect.join '/'),
+    "national geojson matches dist ( #{totals.join ' / '} vs #{expect.join ' / '} )"
+
+  # the lookup table is the one file with a row for every region at every level.
+  csv-file = manifest.files.filter(-> it.format == \csv).0
+  if !csv-file => ok false, "the release has a csv lookup table"
+  else
+    lines = (fs.read-file-sync "release/#{csv-file.name}").toString!.trim!.split '\n'
+    wanted = <[county town village]>.map((lv) -> Object.keys(national[lv] or {}).length)
+      .reduce (+), 1
+    ok lines.length == wanted, "csv has a row per region at every level ( #{lines.length} vs #wanted )"
+    no-anchor = (lines.slice(1).filter -> (it.split ',').7 in ['', void]).map -> (it.split ',').0
+    ok no-anchor.length == 0, "every row has an anchor point#{show no-anchor}"
 
 # the checks above only look at the data. this one exercises the code a browser runs:
 # load `dist/index.min.js` into a dom the way a page would, and drive the public api.
