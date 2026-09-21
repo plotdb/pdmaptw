@@ -25,7 +25,8 @@
     "build": "./fetch; ./node_modules/.bin/lsc ./convert.ls; ./node_modules/.bin/lsc ./filter.ls; ./build; npm run release; npm run verify",
     "verify": "./node_modules/.bin/lsc ./verify.ls",
     "release": "./node_modules/.bin/lsc ./release.ls",
-    "release:publish": "gh release create v$npm_package_version --title \"pdmaptw v$npm_package_version\" --notes-file release/NOTES.md release/manifest.json release/*.geojson release/*.svg release/*.csv"
+    "release:publish": "gh release create v$npm_package_version --title \"pdmaptw v$npm_package_version\" --notes-file release/NOTES.md release/manifest.json release/*.geojson release/*.svg release/*.csv && npm run purge",
+    "purge": "curl -s https://purge.jsdelivr.net/npm/pdmaptw/manifest.json > /dev/null"
   },
   "devDependencies": {
     "@loadingio/bootstrap.ext": "^0.0.9",

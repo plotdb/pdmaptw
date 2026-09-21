@@ -235,7 +235,14 @@ attached to each [GitHub release](https://github.com/plotdb/pdmaptw/releases), a
 
 A download page should read `manifest.json` rather than hardcode a file list — new formats
 and new data releases then need no change on the consuming side. It is included in the npm
-package too, so it can be fetched from a CDN.
+package too, so it can be fetched from a CDN:
+
+    https://cdn.jsdelivr.net/npm/pdmaptw/manifest.json
+
+An unversioned jsDelivr path like that one keeps a page on the newest release without any
+change on its side, but jsDelivr caches it for days. `npm run release:publish` purges that
+path so a new release shows up immediately; `npm run purge` does it on its own if a release
+went out some other way.
 
 Formats:
 
