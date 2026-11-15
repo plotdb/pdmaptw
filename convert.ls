@@ -11,7 +11,9 @@ opt = do
   # ( 臺中市中區 ) is filtered out entirely, for ~1KB of savings.
   mw: county: 0.0001, town: 0.00003, village: 0.000001
   # this is for polygon simplification. will wipe out some polygons if too simple
-  w: county: 0.0001, town: 0.00004, village: 0.00001
+  # village was 0.00001 until 2.7.0: urban villages are only a few hundred meters across, and a
+  # single town's villages drawn on their own looked like low poly. 0.000001 costs ~16% in size.
+  w: county: 0.0001, town: 0.00004, village: 0.000001
 
 # simplification leaves two kinds of broken rings behind, and both are fatal because
 # d3-geo reads them as covering the whole sphere - one of them paints the entire map:
@@ -58,6 +60,21 @@ clean-features = (topo, name) ->
       else {type: \Polygon, coordinates: polygons.0}
     f
   .filter -> it
+
+# arc indices of a geometry ( negative ones are reversed: ~i )
+walk-arcs = (arcs, cb) ->
+  if !arcs => return
+  for a in arcs => if Array.isArray(a) => walk-arcs(a, cb) else cb(if a < 0 => ~a else a)
+
+# regions whose every ring collapsed ( zero area ), as {"<object>/<code>": true }
+collapsed = (topo) ->
+  ret = {}
+  for name, obj of topo.objects
+    for f in topojson.feature(topo, obj).features
+      g = f.geometry
+      polygons = if !g => [] else if g.type == \MultiPolygon => g.coordinates else [g.coordinates]
+      if !polygons.some((p) -> p.length and Math.abs(ring-area(p.0)) > eps) => ret["#name/#{f.properties.code}"] = true
+  ret
 
 # every object in the topology goes through the same cleanup, and they are rebuilt into one
 # topology together, so arcs shared between objects stay shared.
@@ -164,8 +181,23 @@ proc = (lv) ->
             properties.code = code
             {type: \Feature, properties, geometry: topojson.merge(t, t.objects.v.geometries)}
       topo = topojson.topology objs, 1e5
-      topo = topojson.presimplify topo
-      topo = topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv])
+      # simplification can collapse a small region entirely ( 36 villages at the old threshold ).
+      # simplify once, find the regions that collapsed, then simplify again with every arc they use
+      # kept whole ( weight Infinity ). only those regions and the edges they share keep their detail,
+      # so the size barely changes. simplify() rewrites the topology, so each pass starts from a copy.
+      json = JSON.stringify topo
+      simplify = (keep = {}) ->
+        t = topojson.presimplify JSON.parse(json)
+        for name, obj of t.objects => for g in obj.geometries
+          if !keep["#name/#{(g.properties or {}).code}"] => continue
+          walk-arcs g.arcs, (i) -> for p in t.arcs[i] => p.2 = Infinity
+        topojson.simplify(topojson.filter(t, topojson.filterWeight(t, opt.mw[lv])), opt.w[lv])
+      topo = simplify!
+      keep = collapsed topo
+      if (n = [k for k of keep].length) =>
+        console.log "  #n region(s) collapsed by simplification, simplify again keeping them: #{[k for k of keep].slice(0, 5).join ', '}"
+        topo = simplify keep
+        if (left = [k for k of collapsed topo]).length => console.log "  still collapsed: #{left.join ', '}"
       topo = clean topo
       console.log "  #{topo.objects.pdmaptw.geometries.length} geometries"
       fs-extra.ensure-dir-sync "src/topojson"

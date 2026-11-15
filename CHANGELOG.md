@@ -1,5 +1,15 @@
 # Change Logs
 
+## v2.7.0
+
+ - villages are simplified less ( `w` 0.00001 -> 0.000001 ): urban villages are only a few hundred
+   meters across, and the villages of a single town, drawn on their own, looked like low poly. hillside
+   and riverside boundaries are much closer to the source. village files grow 10 ~ 25%.
+ - no region collapses in simplification anymore: each level is simplified once, the regions that
+   collapsed are found, and it is simplified again with every arc they use kept whole. at the old
+   threshold this was 36 villages, drawn as nothing; at the new one it is one unnamed islet off 瑞芳區.
+   applies to all levels; county and town files are unchanged.
+
 ## v2.6.0
 
  - town files ( `town.map.js`, `county/<縣市名>.map.js` ) carry a second object,
