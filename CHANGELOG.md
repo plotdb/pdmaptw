@@ -1,5 +1,67 @@
 # Change Logs
 
+## v2.7.0
+
+ - villages are simplified less ( `w` 0.00001 -> 0.000001 ): urban villages are only a few hundred
+   meters across, and the villages of a single town, drawn on their own, looked like low poly. hillside
+   and riverside boundaries are much closer to the source. village files grow 10 ~ 25%.
+ - no region collapses in simplification anymore: each level is simplified once, the regions that
+   collapsed are found, and it is simplified again with every arc they use kept whole. at the old
+   threshold this was 36 villages, drawn as nothing; at the new one it is one unnamed islet off 瑞芳區.
+   applies to all levels; county and town files are unchanged.
+
+## v2.6.0
+
+ - town files ( `town.map.js`, `county/<縣市名>.map.js` ) carry a second object,
+   `topo.objects.county`: the counties merged from their towns, sharing the towns' arcs, the
+   same way village files carry the towns since 2.5.0. `objects.pdmaptw` is unchanged; town
+   files grow about 4%.
+ - 4 coastal towns in 臺東縣 come out slightly different, for the same reason as the villages
+   in 2.5.0 ( the counties are in the topology when it is simplified ).
+ - `verify.ls` checks the county object the same way as the town object.
+
+## v2.5.0
+
+ - village files ( `village.map.js`, `county/<縣市名>.village.map.js` ) carry a second
+   object, `topo.objects.town`: the towns merged from their villages. They share the
+   villages' arcs, so town and village boundaries line up exactly - the town files come from
+   a different shapefile, simplified separately, and are off by up to tens of meters.
+   `objects.pdmaptw` is unchanged, and nothing that reads it is affected. Village files grow
+   2 ~ 3%.
+ - the merge runs on the source coordinates, before quantization: merged after it, about a
+   third of the towns came out with rings broken into open pieces, because at 1e5 the shared
+   edges of neighbouring villages no longer match everywhere.
+ - because the towns are in the same topology when it is simplified, 14 coastal villages
+   come out slightly different ( a point or two, area within the simplification error ).
+ - `verify.ls` checks the town object: present, one town per town code, every ring closed.
+
+## v2.4.0
+
+ - publish the boundaries as open data: `release.ls` ( `npm run release` ) writes GeoJSON,
+   SVG and a CSV lookup table into `release/`, one national file plus one per county at each
+   level, and refreshes `manifest.json`. The files go out as GitHub release assets
+   ( `npm run release:publish` ); `manifest.json` is committed and shipped on npm so a
+   download page can read the file list instead of hardcoding it.
+ - `convert.ls` now also writes `src/topojson/<level>.stat.json`: area and a label anchor
+   point computed on the source geometry, before simplification drops the small islands.
+   Not shipped in `dist`; the published CSV is built from it.
+ - village maps are now also split per county: `dist/county/<縣市名>.village.map.js`,
+   registered as type `county/<縣市名>/village`. A county's villages are 30 ~ 220KB against
+   1.8MB for the whole country.
+ - the per-county town file also registers as `county/<縣市名>/town`, so both levels of a
+   single county can be addressed the same way. `county/<縣市名>` keeps its old meaning.
+ - `filter.ls` takes `-l <level>` to split only one level, alongside the existing `-n`.
+ - add `verify.ls` ( `npm run verify`, and run automatically at the end of `npm run build` ):
+   loads `dist/` the way a browser does and checks codes, code nesting, sphere-covering
+   geometry, the smallest district, per-county file coverage and totals, file sizes, and
+   `init` / `fit` / `choropleth` / `hover` in a jsdom page.
+ - add `web/static/sample.html`, a self-contained sample page covering `init` / `fit` /
+   `choropleth` / `hover`, on-demand map file loading, and placing a marker with
+   `pdmaptw.projection()`.
+ - document `pdmaptw.projection()` properly: `[lng, lat]` order, what its output shares with
+   the drawn paths, and that sizes need dividing by `scale()`.
+
+
 ## v2.3.0
 
  - map data now carries the official 行政區代碼 as `properties.code` ( 5 / 8 / 11 digits for
