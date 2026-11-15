@@ -126,6 +126,39 @@ else
     n = Object.keys(national[lv] or {}).length
     ok total[lv] == n, "#lv total across county files == national ( #{total[lv]} vs #n )"
 
+# village files carry the towns merged from their villages ( object `town` ), so a map can
+# draw both levels without the two shapefiles' boundaries crossing each other. a ring that
+# does not close means the merge went wrong ( it did, when merged after quantization ).
+console.log "\ntowns in village files:"
+check-towns = (label, topo) ->
+  if !ok(!!(topo.objects.town), "#label: has objects.town") => return
+  towns = topojson-client.feature topo, topo.objects.town .features
+  want = {}
+  topo.objects.pdmaptw.geometries.map (g) -> if g.properties.code => want[g.properties.code.substr 0 8] = 1
+  have = {}
+  [open, sphere] = [[], []]
+  towns.map (f) ->
+    have[f.properties.code] = 1
+    g = f.geometry
+    if !(g and g.coordinates.length) => return
+    polys = if g.type == \MultiPolygon => g.coordinates else [g.coordinates]
+    polys.map (p) -> p.map (r) ->
+      if r.0.0 != r[* - 1].0 or r.0.1 != r[* - 1].1 => open.push f.properties.code
+    if d3-geo.geoArea(f) > 1 => sphere.push f.properties.code
+  missing = [c for c of want when !have[c]]
+  ok missing.length == 0, "#label: a town for every town code among the villages#{show missing}"
+  ok open.length == 0, "#label: every town ring closes#{show open}"
+  ok sphere.length == 0, "#label: no sphere-covering town#{show sphere}"
+  towns.length
+if load("dist/village.map.js") and reg.village => check-towns "village", reg.village.topo
+if national.county =>
+  n = 0
+  for _, f of national.county
+    name = f.properties.name
+    if load("dist/county/#name.village.map.js") and (d = reg["county/#name/village"]) =>
+      n += (check-towns "county/#name/village", d.topo) or 0
+  if national.town => ok n == Object.keys(national.town).length, "towns across county village files == national town count ( #n vs #{Object.keys(national.town).length} )"
+
 # size is not correctness, but a missing quantization argument once made these files
 # ~200x bigger without any other symptom.
 console.log "\nsize:"

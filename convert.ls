@@ -36,8 +36,8 @@ ring-area = (ring) ->
 rewind = (ring, ccw) ->
   if (ring-area(ring) >= 0) == !!ccw => ring else ring.slice!reverse!
 
-clean = (topo) ->
-  features = topojson.feature(topo, topo.objects.pdmaptw).features
+clean-features = (topo, name) ->
+  topojson.feature(topo, topo.objects[name]).features
   .map (f) ->
     g = f.geometry
     if !g => return null
@@ -58,7 +58,13 @@ clean = (topo) ->
       else {type: \Polygon, coordinates: polygons.0}
     f
   .filter -> it
-  topojson.topology {pdmaptw: {type: \FeatureCollection, features}}, 1e5
+
+# every object in the topology goes through the same cleanup, and they are rebuilt into one
+# topology together, so arcs shared between objects stay shared.
+clean = (topo) ->
+  objs = {}
+  for name of topo.objects => objs[name] = {type: \FeatureCollection, features: clean-features(topo, name)}
+  topojson.topology objs, 1e5
 
 # the centroid of the largest polygon, not of the whole feature: a feature made of
 # scattered islands has its spherical centroid out at sea, which is useless as a label
@@ -130,7 +136,33 @@ proc = (lv) ->
           lat: +lat.to-fixed 6
       fs.write-file-sync "src/topojson/#lv.stat.json", JSON.stringify(stat)
 
-      topo = topojson.topology {pdmaptw: divisions}, 1e5
+      # village files also carry the towns, merged from their villages ( object `town` ). the
+      # town level file is drawn from a different shapefile and simplified on its own, so its
+      # boundaries never line up with the villages. these are merged from the source geometry
+      # and built into the same topology, so they are made of the very same arcs as the villages
+      # and still line up after simplification.
+      # the merge has to happen before quantization: at 1e5 the shared edges of neighbouring
+      # villages no longer match everywhere, and about a third of the merged towns come out as
+      # rings broken into open pieces. on the source coordinates every ring closes. one town at
+      # a time keeps the unquantized topology small.
+      objs = {pdmaptw: divisions}
+      if lv == \village =>
+        groups = {}
+        for f in divisions.features
+          if !(f.geometry and f.properties.code) => continue
+          (groups[f.properties.code.substring(0, 8)] ||= []).push f
+        objs.town =
+          type: \FeatureCollection
+          features: [k for k of groups].sort!map (code) ->
+            fs = groups[code]
+            # topology() rewrites the geometries it is given in place. work on a copy
+            t = topojson.topology {v: {type: \FeatureCollection, features: JSON.parse(JSON.stringify fs)}}
+            {
+              type: \Feature
+              properties: {c: fs.0.properties.c, t: fs.0.properties.t, code}
+              geometry: topojson.merge t, t.objects.v.geometries
+            }
+      topo = topojson.topology objs, 1e5
       topo = topojson.presimplify topo
       topo = topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv])
       topo = clean topo

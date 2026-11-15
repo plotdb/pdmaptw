@@ -201,6 +201,16 @@ Each feature drawn by `init()` carries:
  - `c` / `t` / `v`: indices into `meta.name`, from which `name` is composed. These are an
    implementation detail of the file format.
 
+Village files ( `village.map.js` and `county/<縣市名>.village.map.js` ) also carry the towns,
+merged from their villages, as a second object `topo.objects.town` ( properties `c`, `t`,
+`code` ). `init()` only draws `topo.objects.pdmaptw` and ignores it. The town files are drawn
+from a different shapefile and simplified on their own, so their boundaries do not line up
+with the villages; these towns share the villages' arcs and do, which is what you want when
+drawing towns over villages or switching between the two levels:
+
+    var d = pdmaptw.get('county/臺北市/village');   // after loading the file
+    var towns = topojson.feature(d.topo, d.topo.objects.town).features;
+
 `meta` ( the second half of each `*.map.js`, also released as `<level>.meta.json` ) is:
 
     {

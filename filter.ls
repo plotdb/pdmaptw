@@ -23,12 +23,16 @@ levels = if argv.l and argv.l.length => argv.l else <[town village]>
 # suffix. see `build` for the `pdmaptw.register` type each one ends up with.
 suffix = town: '', village: '.village'
 
-generate = (lv, geojson, meta, name) ->
-  features = geojson.features.filter (f) -> meta.name[f.properties.c] in [name]
+generate = (lv, geojsons, meta, name) ->
+  pick = (g) -> g.features.filter (f) -> meta.name[f.properties.c] in [name]
+  features = pick geojsons.pdmaptw
   if !features.length =>
     console.error "  no #lv features found for county #{name}. skipped."
     return
-  filtered-geojson = {pdmaptw: {type: \FeatureCollection, features}}
+  # other objects ( the towns merged from villages, `town` ) come along, built into the same
+  # topology so they keep sharing arcs with the villages.
+  filtered-geojson = {}
+  for k, g of geojsons => filtered-geojson[k] = {type: \FeatureCollection, features: pick g}
   # `topology` takes the quantization factor as a plain number. passing an object
   # here silently disabled quantization and made these files ~200x bigger than needed.
   topology = topojson.topology filtered-geojson, 1e5
@@ -44,5 +48,6 @@ levels.map (lv) ->
   console.log "splitting #lv by county ..."
   topo = JSON.parse(fs.read-file-sync "src/topojson/#lv.topo.json" .toString!)
   meta = JSON.parse(fs.read-file-sync "src/topojson/#lv.meta.json" .toString!)
-  geojson = topojson-client.feature topo, topo.objects.pdmaptw
-  names.map (n) -> generate lv, geojson, meta, n
+  geojsons = {}
+  for k of topo.objects => geojsons[k] = topojson-client.feature topo, topo.objects[k]
+  names.map (n) -> generate lv, geojsons, meta, n

@@ -1,5 +1,20 @@
 # Change Logs
 
+## v2.5.0
+
+ - village files ( `village.map.js`, `county/<縣市名>.village.map.js` ) carry a second
+   object, `topo.objects.town`: the towns merged from their villages. They share the
+   villages' arcs, so town and village boundaries line up exactly - the town files come from
+   a different shapefile, simplified separately, and are off by up to tens of meters.
+   `objects.pdmaptw` is unchanged, and nothing that reads it is affected. Village files grow
+   2 ~ 3%.
+ - the merge runs on the source coordinates, before quantization: merged after it, about a
+   third of the towns came out with rings broken into open pieces, because at 1e5 the shared
+   edges of neighbouring villages no longer match everywhere.
+ - because the towns are in the same topology when it is simplified, 14 coastal villages
+   come out slightly different ( a point or two, area within the simplification error ).
+ - `verify.ls` checks the town object: present, one town per town code, every ring closed.
+
 ## v2.4.0
 
  - publish the boundaries as open data: `release.ls` ( `npm run release` ) writes GeoJSON,
