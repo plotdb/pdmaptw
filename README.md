@@ -203,7 +203,8 @@ Each feature drawn by `init()` carries:
 
 Village files ( `village.map.js` and `county/<縣市名>.village.map.js` ) also carry the towns,
 merged from their villages, as a second object `topo.objects.town` ( properties `c`, `t`,
-`code` ). `init()` only draws `topo.objects.pdmaptw` and ignores it. The town files are drawn
+`code` ). Likewise town files ( `town.map.js` and `county/<縣市名>.map.js` ) carry the counties
+merged from their towns as `topo.objects.county` ( properties `c`, `code` ), since 2.6.0. `init()` only draws `topo.objects.pdmaptw` and ignores it. The town files are drawn
 from a different shapefile and simplified on their own, so their boundaries do not line up
 with the villages; these towns share the villages' arcs and do, which is what you want when
 drawing towns over villages or switching between the two levels:

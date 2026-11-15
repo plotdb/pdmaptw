@@ -1,7 +1,7 @@
 {
   "name": "pdmaptw",
-  "version": "2.5.0",
-  "tag": "v2.5.0",
+  "version": "2.6.0",
+  "tag": "v2.6.0",
   "source": {
     "county": {
       "level": "county",
@@ -48,7 +48,7 @@
       "name": "county-2025-03-18.geojson",
       "size": 55728,
       "sha256": "a809e483184d7762918476058cc9d7e10e9720113187afee2a04b4f7ced3103f",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/county-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/county-2025-03-18.geojson"
     },
     {
       "level": "county",
@@ -63,8 +63,8 @@
       "projection": "compact",
       "name": "county-2025-03-18.svg",
       "size": 33575,
-      "sha256": "82f9312a44f57941c0c0223047000295f58b3744caf68c7139c8c7db7208f3eb",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/county-2025-03-18.svg"
+      "sha256": "cca6f706aa7958703386952f0d36188cf73c5c97cb394095985163c3553dba48",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/county-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -78,9 +78,9 @@
       "scope_name": "全國",
       "projection": "wgs84",
       "name": "town-2025-03-18.geojson",
-      "size": 345906,
-      "sha256": "2897bc4f85e2f8c38a88a0f71eaeeeed27f3a13233f42fe9900a981de7a53c82",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-2025-03-18.geojson"
+      "size": 346114,
+      "sha256": "151fb4d01ff97bf349183f46732f8c5974738ebc51814296afccea2556c17f7c",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -94,9 +94,9 @@
       "scope_name": "全國",
       "projection": "compact",
       "name": "town-2025-03-18.svg",
-      "size": 191134,
-      "sha256": "93a921d9233e58af5b679129ed1bba2d9b70adc306480a61fee24d1b4aa0a77e",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-2025-03-18.svg"
+      "size": 191261,
+      "sha256": "1c93950f9be60455bb1a1b3407300ff0cc7b52776aefcd8ddd97a6199a3188b5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-2025-03-18.svg"
     },
     {
       "level": "village",
@@ -112,7 +112,7 @@
       "name": "village-2026-08-17.geojson",
       "size": 3840953,
       "sha256": "1e5f6cb43bc86cd7ac694a8dc94ca11eebded9f59589270e2a67281b328fadcd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -127,8 +127,8 @@
       "projection": "compact",
       "name": "village-2026-08-17.svg",
       "size": 1844199,
-      "sha256": "e72d940e5d7b83bd97f98cdcc207a53854c40fd6b00988cba0f9ae7e4511ca43",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-2026-08-17.svg"
+      "sha256": "41fe021d4f62127f40491bfdcd45d606a865b6462c7451851006c09bed9835c5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-2026-08-17.svg"
     },
     {
       "level": "town",
@@ -144,7 +144,7 @@
       "name": "town-09007-2025-03-18.geojson",
       "size": 2471,
       "sha256": "69067aa45b9b6c85cd7af20e6493dfff83fa16dc9ea23c0a3dc69c623240e5d4",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-09007-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-09007-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -159,8 +159,8 @@
       "projection": "compact",
       "name": "town-09007-2025-03-18.svg",
       "size": 1802,
-      "sha256": "890b2714f982e29ece984f48bbed05b468d4e9ba606b2db81abbc2dfb2cf6fd6",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-09007-2025-03-18.svg"
+      "sha256": "9b9de53d46caf0eb8e52ad857229a5854a8fe73333888bb2aa4d6ddb1a264cef",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-09007-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -176,7 +176,7 @@
       "name": "town-10002-2025-03-18.geojson",
       "size": 15998,
       "sha256": "ee5e35b6cc992fd82c31ed903f122675595638f4e5693c2a1495ecb00f8ebcf5",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10002-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10002-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -191,8 +191,8 @@
       "projection": "compact",
       "name": "town-10002-2025-03-18.svg",
       "size": 9730,
-      "sha256": "1e62daf61771465f1aea5cfeceeab5f8d5d62666c4174ff9c43426f819547083",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10002-2025-03-18.svg"
+      "sha256": "509f10225ba78376dab7c1adcb8216792dfa94ecd1cb73eb2e18922b3e86e2e1",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10002-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -208,7 +208,7 @@
       "name": "town-10007-2025-03-18.geojson",
       "size": 18633,
       "sha256": "d78ccfe7b182c374484bcc942fee6f9b62583e4f0cd1c11185b598dddda51122",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10007-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10007-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -223,8 +223,8 @@
       "projection": "compact",
       "name": "town-10007-2025-03-18.svg",
       "size": 10473,
-      "sha256": "42fe084d660a73fbd9eadc177db5cb19e4011d2bcfae1d7dc6f6f5c06ce76a33",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10007-2025-03-18.svg"
+      "sha256": "b42bf0a8336c803d08587524a9754dab4e4ea8df566af9e6e13c1ca8e539ecf5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10007-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -240,7 +240,7 @@
       "name": "town-10008-2025-03-18.geojson",
       "size": 19515,
       "sha256": "594c062e41088b16a2d6671000cddde5000b62c012d2444d3a8019cd1437c7ba",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10008-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10008-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -255,8 +255,8 @@
       "projection": "compact",
       "name": "town-10008-2025-03-18.svg",
       "size": 11643,
-      "sha256": "d65f06aa1be9ad6b61a814c5563d30fd5a2d8df126d1ddf632e01b407f27add2",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10008-2025-03-18.svg"
+      "sha256": "060032d9b9b1e1d0c55b245aa6e3c003137b26ab40b997c7b4a46ae4527afc7b",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10008-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -272,7 +272,7 @@
       "name": "town-10009-2025-03-18.geojson",
       "size": 18764,
       "sha256": "bb1caf40bfbeb3257a69c0bd513f8c16a7cb60025b8181c606c76ee6235ffadd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10009-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10009-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -287,8 +287,8 @@
       "projection": "compact",
       "name": "town-10009-2025-03-18.svg",
       "size": 10774,
-      "sha256": "acb9f19926190cd709de51b31f0ce2d41d9ec83403ab1401f25251a296e7d8f6",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10009-2025-03-18.svg"
+      "sha256": "6d13cb2bc95070f195dc555ac6136ed7f56f51cbfceb5b2e3a84b1c35fc7d52e",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10009-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -304,7 +304,7 @@
       "name": "town-10013-2025-03-18.geojson",
       "size": 29618,
       "sha256": "2eda549deee705a07a60a7eab4018ba566b1cd4a4af975a8ad5bc32a4f2cc14b",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10013-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10013-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -319,8 +319,8 @@
       "projection": "compact",
       "name": "town-10013-2025-03-18.svg",
       "size": 16980,
-      "sha256": "9d7b5aaece4ec62a6f03382fc674d6e960eaf04db9665f0dd878e745f13521ee",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10013-2025-03-18.svg"
+      "sha256": "c2d74d22d679ad5454c85417fb7bf3cb3f664d95e46256a7dcd7a72e3ae59851",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10013-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -336,7 +336,7 @@
       "name": "town-10017-2025-03-18.geojson",
       "size": 4104,
       "sha256": "dc2653e5ef6eeedeba88e0af6102b23d1b8af549b13c4160c611f08fab998179",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10017-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10017-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -351,8 +351,8 @@
       "projection": "compact",
       "name": "town-10017-2025-03-18.svg",
       "size": 2681,
-      "sha256": "980d7df427eb6681fd25d256ba2e82943389b2cbb20eb9a65adfd39ad37203f3",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10017-2025-03-18.svg"
+      "sha256": "93e3f8dac13c0ccc25f347123afca98d49dbe3f2c1605f168378167561370d0c",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10017-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -368,7 +368,7 @@
       "name": "town-63000-2025-03-18.geojson",
       "size": 7188,
       "sha256": "25adc425a49b689f9bae0e6081eba1ecf04d73f157968d7b72e5e4cb6e33a0ad",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-63000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-63000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -383,8 +383,8 @@
       "projection": "compact",
       "name": "town-63000-2025-03-18.svg",
       "size": 4332,
-      "sha256": "0db13ecf0fe1a7f0698549dfd4b1749c0dac3baabf0b09d329a6a0803c1cfe68",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-63000-2025-03-18.svg"
+      "sha256": "8a8ee2818eb9353b1dfc62f7c177ea9086d50c9fd3d30828569246aa8be7938d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-63000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -400,7 +400,7 @@
       "name": "town-65000-2025-03-18.geojson",
       "size": 25573,
       "sha256": "0b8a56613f2852cabd61e96ff0248cae6fd07ae8e8cb398b620956f8fab8600c",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-65000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-65000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -415,8 +415,8 @@
       "projection": "compact",
       "name": "town-65000-2025-03-18.svg",
       "size": 14506,
-      "sha256": "d46eb5218f1796b52fce04072cea8b423cd1bd40cc1acb0e98833015e552a5a5",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-65000-2025-03-18.svg"
+      "sha256": "43cd47efaac8f30cc4f52a1359968638950155973342460fac784f2176434e88",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-65000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -432,7 +432,7 @@
       "name": "town-67000-2025-03-18.geojson",
       "size": 31301,
       "sha256": "3138fe3cd9e59814069e23fc20ab7b4e09d8e1e2dc5130e929cf6a9a053d70a0",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-67000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-67000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -447,8 +447,8 @@
       "projection": "compact",
       "name": "town-67000-2025-03-18.svg",
       "size": 17481,
-      "sha256": "c13435b648c29e76bda9edb27c78ec50ed1cd21d8ae8862a07260bb0b1840287",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-67000-2025-03-18.svg"
+      "sha256": "692cf68acfa4fedf070d864ca7b3cfa7d50d5d6f721a625d5d6e4b5261492cbe",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-67000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -464,7 +464,7 @@
       "name": "town-68000-2025-03-18.geojson",
       "size": 12996,
       "sha256": "4d67042dfaaae1f95699b27b962c1b91718494817446fe026d0f1c530b8a90da",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-68000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-68000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -479,8 +479,8 @@
       "projection": "compact",
       "name": "town-68000-2025-03-18.svg",
       "size": 7797,
-      "sha256": "3f0991bf9d227671a017908530f864b936034609cf793f569bb75db5ea09df48",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-68000-2025-03-18.svg"
+      "sha256": "bf07402d66bbb4a097ad7cca6a86a2f44a1ba6a4dd03d191ea277e700758b2cc",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-68000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -496,7 +496,7 @@
       "name": "town-10020-2025-03-18.geojson",
       "size": 1420,
       "sha256": "d6897cf2890d5572bead112de91628f60ff01383f42337e3b90a58b687350e42",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10020-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10020-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -511,8 +511,8 @@
       "projection": "compact",
       "name": "town-10020-2025-03-18.svg",
       "size": 1351,
-      "sha256": "65ce9e41bbb16998342752c623f52b95494ab209d2adb9288cbdf87605b87dbd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10020-2025-03-18.svg"
+      "sha256": "db134fb953d8d59d0bb4a8ed41b560793c5949cb5676ba77137113054fd954e3",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10020-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -528,7 +528,7 @@
       "name": "town-10010-2025-03-18.geojson",
       "size": 20633,
       "sha256": "d48035db6c8d838ff3ace22907edaa5ade6df6709f16e915ef4452703d5ebe86",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10010-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10010-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -543,8 +543,8 @@
       "projection": "compact",
       "name": "town-10010-2025-03-18.svg",
       "size": 11969,
-      "sha256": "b1394883dee08e66462b44e8147558070ca4c73a9d4a8418aa3e94be7e1be4ec",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10010-2025-03-18.svg"
+      "sha256": "e3ba5ed5456df44fb035e0b3f75c9f347223bccf854a8112e84bcfbe6eb59eac",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10010-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -560,7 +560,7 @@
       "name": "town-09020-2025-03-18.geojson",
       "size": 3857,
       "sha256": "3c171720e657cdfed2dd92e6e267bfd155f3861f849594849abcf6bf767b7501",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-09020-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-09020-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -575,8 +575,8 @@
       "projection": "compact",
       "name": "town-09020-2025-03-18.svg",
       "size": 2640,
-      "sha256": "f45cfb8a0b6e8cfb32699403fd1ee116ddf7dcb4c5d02ce7ff0c80f31a66e1a3",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-09020-2025-03-18.svg"
+      "sha256": "3079a236c246b7eb5e886255c070e5b5ec405d3c079886b04c820fbc95f476a0",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-09020-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -592,7 +592,7 @@
       "name": "town-64000-2025-03-18.geojson",
       "size": 31220,
       "sha256": "a0f6164ed422c733ad2f2427a4ca50132e7ba5ef225f6f3df1ee0267da7b0a9d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-64000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-64000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -607,8 +607,8 @@
       "projection": "compact",
       "name": "town-64000-2025-03-18.svg",
       "size": 17386,
-      "sha256": "de02d0dfa9df86211867207d6eed3a8719cd2c271bbfd90c833a5f2045cad828",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-64000-2025-03-18.svg"
+      "sha256": "cb54263cb79c170b9dcf04f769c8711de72cea155211efe8638e6ea4d70b5e5f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-64000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -622,9 +622,9 @@
       "format": "geojson",
       "projection": "wgs84",
       "name": "town-10014-2025-03-18.geojson",
-      "size": 21800,
-      "sha256": "e1febd28ad7469b4fa710e8101ad286247df9f635ce53b390b80af4218d5f7ca",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10014-2025-03-18.geojson"
+      "size": 22008,
+      "sha256": "b7bd20eb22e0a3b7b13dd9700a25b863e7e9335a499f1baf45f45425464493db",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10014-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -638,9 +638,9 @@
       "format": "svg",
       "projection": "compact",
       "name": "town-10014-2025-03-18.svg",
-      "size": 13035,
-      "sha256": "33439029ae0e5c99b33d2f13b241dace78bd4fc502cd32a337dc38db1140709f",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10014-2025-03-18.svg"
+      "size": 13160,
+      "sha256": "9be25519f473f65b6ef1ac1114817fe4be1a9a200668af92ca59bc91527eef74",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10014-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -656,7 +656,7 @@
       "name": "town-10015-2025-03-18.geojson",
       "size": 20782,
       "sha256": "b742941ce7c3a348d831ef5a482d8cd6ab54b477d0884f20e6e6da1210ca228b",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10015-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10015-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -671,8 +671,8 @@
       "projection": "compact",
       "name": "town-10015-2025-03-18.svg",
       "size": 12760,
-      "sha256": "18b9d1464eb077e00c4bc8796b89b854038c2daeb99fa1bdfb778adac9ba475e",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10015-2025-03-18.svg"
+      "sha256": "0e469a751e3f0ab5df67665b6879124e88cd4922301ac37bca547c97e1748eff",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10015-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -688,7 +688,7 @@
       "name": "town-10016-2025-03-18.geojson",
       "size": 6065,
       "sha256": "90e8c83217631656fe2a9324b36bbbdd9305a00d15a60dd8a715bc50f311eab0",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10016-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10016-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -703,8 +703,8 @@
       "projection": "compact",
       "name": "town-10016-2025-03-18.svg",
       "size": 3842,
-      "sha256": "536e4ca783ba876894534c7ecd296a34fda8d2cd800b73731f96b74870c000c3",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10016-2025-03-18.svg"
+      "sha256": "e8b84ed57cebc38a64c40fc18d918906c863a52faebf431b06fc4e5ddf8947b6",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10016-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -720,7 +720,7 @@
       "name": "town-10018-2025-03-18.geojson",
       "size": 2382,
       "sha256": "9498998dccec47b9270d55305c387cb5cf14253c22ab6e98648d800165baf5f4",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10018-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10018-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -735,8 +735,8 @@
       "projection": "compact",
       "name": "town-10018-2025-03-18.svg",
       "size": 1885,
-      "sha256": "5dd770bfaaaf870f3ea85cc9ed023a788342bbcf83e7559fd3fde8c61a3c0a0a",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10018-2025-03-18.svg"
+      "sha256": "96292698fcc4372b3f23ec94b51db8d2d4859c3a36f7d2ca7329d720884bb588",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10018-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -752,7 +752,7 @@
       "name": "town-66000-2025-03-18.geojson",
       "size": 22816,
       "sha256": "a80dacedc1c5c16a6c8626fcfd8130ed2a44ba9b80668bb8fa791ff9801da91d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-66000-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-66000-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -767,8 +767,8 @@
       "projection": "compact",
       "name": "town-66000-2025-03-18.svg",
       "size": 12791,
-      "sha256": "8e943e389c8ecc4aab140e6a254cd8e69c2cfdef73c06061e80cf9514a8853fa",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-66000-2025-03-18.svg"
+      "sha256": "215bec16b4fa85e6580ff540bc56b2421e2a2c34d85425df0053c23c0487cb4f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-66000-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -784,7 +784,7 @@
       "name": "town-10005-2025-03-18.geojson",
       "size": 16891,
       "sha256": "8009d192a9f5019917f89dc636e4bd0f029f0c5f6048b7a3a03c6e3b3030612f",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10005-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10005-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -799,8 +799,8 @@
       "projection": "compact",
       "name": "town-10005-2025-03-18.svg",
       "size": 9776,
-      "sha256": "b64c781c72bdfed0924b5f8ee12ce47c8c5c2cdc1b91b2747ce6df8cfe4440cb",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10005-2025-03-18.svg"
+      "sha256": "c28d18172387e65c24586b93f926f10fc8a6cee0b620d3bd728c88afbfac7fd3",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10005-2025-03-18.svg"
     },
     {
       "level": "town",
@@ -816,7 +816,7 @@
       "name": "town-10004-2025-03-18.geojson",
       "size": 12740,
       "sha256": "388cd8fc5518d02bfc4e8cb3d7ee794427587e2521633a99cb57bd968a6235dd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10004-2025-03-18.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10004-2025-03-18.geojson"
     },
     {
       "level": "town",
@@ -831,8 +831,8 @@
       "projection": "compact",
       "name": "town-10004-2025-03-18.svg",
       "size": 7560,
-      "sha256": "225730088c750c646648d9f7e129201394196fb567cb28d4fea1cb13014d78d4",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/town-10004-2025-03-18.svg"
+      "sha256": "5cfb6ec57a98bd3214cf3ac6b64f457d011ae75a805081b74feb0ac959e1072a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/town-10004-2025-03-18.svg"
     },
     {
       "level": "village",
@@ -848,7 +848,7 @@
       "name": "village-09007-2026-08-17.geojson",
       "size": 13585,
       "sha256": "d01721008dd1e8d1e5e1b4e467bb6e2766645a3ecc676b68345179264b5d38a4",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-09007-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-09007-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -863,8 +863,8 @@
       "projection": "compact",
       "name": "village-09007-2026-08-17.svg",
       "size": 6096,
-      "sha256": "64462d793784b80c8e5051afb513c4003823f0ecab8fb4dcc70397605f7f3506",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-09007-2026-08-17.svg"
+      "sha256": "2cde7a84f3acd15a8c17e1579cec349fe1db51a5e296412a9454fc4520502ec6",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-09007-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -880,7 +880,7 @@
       "name": "village-10002-2026-08-17.geojson",
       "size": 138943,
       "sha256": "37edef731398e393ce53627faf50a5ee49430e650ae0ea5dfe6c94bdde017174",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10002-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10002-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -895,8 +895,8 @@
       "projection": "compact",
       "name": "village-10002-2026-08-17.svg",
       "size": 70104,
-      "sha256": "da6e2118010dfcdd1288b6cc6d60c7113bc9633980627dffea472d64cbacb909",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10002-2026-08-17.svg"
+      "sha256": "82959822aae6a32621e38c522151af91ea00c3794cc350847d72fa96191fc742",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10002-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -912,7 +912,7 @@
       "name": "village-10007-2026-08-17.geojson",
       "size": 263190,
       "sha256": "b11215c0f79e9d395c1cb02af59e142e0f4214144ce21e83524a7d050a72294c",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10007-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10007-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -927,8 +927,8 @@
       "projection": "compact",
       "name": "village-10007-2026-08-17.svg",
       "size": 123562,
-      "sha256": "29b8551f23f9c19d642960c171e2e7aee5c620990cc4888d48e2e962aeb8b37d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10007-2026-08-17.svg"
+      "sha256": "55af3d413047ccdb52a9fa97792e5fee039c1e20ff925c360b7269a512a9abd5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10007-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -944,7 +944,7 @@
       "name": "village-10008-2026-08-17.geojson",
       "size": 180382,
       "sha256": "4b85382bf681157d33a79ca56f9dc39a370ddc2e5095f69a73fcf79aa68ec72d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10008-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10008-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -959,8 +959,8 @@
       "projection": "compact",
       "name": "village-10008-2026-08-17.svg",
       "size": 92896,
-      "sha256": "7b559946f805473dd9ddd1ca6ad1bef5a5c8cd5fd728f603e766a02c4767ee79",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10008-2026-08-17.svg"
+      "sha256": "7befd0000cc5f214c9fd9dce1768fa4b6a0f1f5d290d831e5c564837926b6eb1",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10008-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -976,7 +976,7 @@
       "name": "village-10009-2026-08-17.geojson",
       "size": 200284,
       "sha256": "e3143602e9ab19dff19eb05002a285cade6104f9ccbb9c63f907c1450133fb7a",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10009-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10009-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -991,8 +991,8 @@
       "projection": "compact",
       "name": "village-10009-2026-08-17.svg",
       "size": 97197,
-      "sha256": "3d8017312d297721693230d0f419b84553bf6c063e87d839d0ae6662dd57e5cc",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10009-2026-08-17.svg"
+      "sha256": "b9b4583c37486e64189d07a385b5f276a8b2102e7484e235cceec7e93be4081f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10009-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1008,7 +1008,7 @@
       "name": "village-10013-2026-08-17.geojson",
       "size": 244853,
       "sha256": "4cfce9136f5cf3da0248d42010f31a10627e4044b04c97a8d699f43a1e720c9a",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10013-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10013-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1023,8 +1023,8 @@
       "projection": "compact",
       "name": "village-10013-2026-08-17.svg",
       "size": 122586,
-      "sha256": "94aef075f932f2ebe41dada5cae65c51e98015bc4ae760c2f0e025fcbb51467a",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10013-2026-08-17.svg"
+      "sha256": "3704daba50f833204ab7c68bb64af5369bb7aa89863376a16e466f0b75655a7a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10013-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1040,7 +1040,7 @@
       "name": "village-10017-2026-08-17.geojson",
       "size": 64974,
       "sha256": "11414b39eafc78198b845c9e34f1d6d08af9b584809428e0d8f323edf153e6be",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10017-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10017-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1055,8 +1055,8 @@
       "projection": "compact",
       "name": "village-10017-2026-08-17.svg",
       "size": 29872,
-      "sha256": "ae709a871d72ce8e7854708e6881c86c3b786e02f22723e6561e03d451242f18",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10017-2026-08-17.svg"
+      "sha256": "6d5c6b37bcae3606d1454205fa58cedf7896213de29417c8610cfc60fe3a745f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10017-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1072,7 +1072,7 @@
       "name": "village-63000-2026-08-17.geojson",
       "size": 171305,
       "sha256": "1467a9e3140d74e074ebfbeee0723e9849bb6b02a9e4c3bfaab9f56c1889b13d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-63000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-63000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1087,8 +1087,8 @@
       "projection": "compact",
       "name": "village-63000-2026-08-17.svg",
       "size": 76492,
-      "sha256": "cc6f4a20cc19dc348f39ea827e2d7fdbfb2cb935cac088e3d9a0f6017a656cf0",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-63000-2026-08-17.svg"
+      "sha256": "2fc643a240c6919697b9483c905e58ddcb21e0b0371f6312c0bd77cdd2ef48d8",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-63000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1104,7 +1104,7 @@
       "name": "village-65000-2026-08-17.geojson",
       "size": 454183,
       "sha256": "4698886b562bbb9f50fd11861e407206f21e01a6c3150aec2fa823ebbd72af6b",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-65000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-65000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1119,8 +1119,8 @@
       "projection": "compact",
       "name": "village-65000-2026-08-17.svg",
       "size": 210432,
-      "sha256": "476838751ddc66de126de7ddeba3766e57402fbfe6c49f369706543685ed9aba",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-65000-2026-08-17.svg"
+      "sha256": "a7a6b6ee7a1ba0dfa72178149a9a843bdcd3b2326b240e74ade04be5de4ae7f9",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-65000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1136,7 +1136,7 @@
       "name": "village-67000-2026-08-17.geojson",
       "size": 321953,
       "sha256": "5746d2dd1d05a2444b8b9c991cb63baed7cd2ed3530bf6e84199107a5e50bbeb",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-67000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-67000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1151,8 +1151,8 @@
       "projection": "compact",
       "name": "village-67000-2026-08-17.svg",
       "size": 155244,
-      "sha256": "703b8d81e7de83ca0d77980bddde820fce0ce8111939bec8d318fd4bf46a4acd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-67000-2026-08-17.svg"
+      "sha256": "4896ddf3d322ecd46504e2e7fe7b3608c2e4218692b92bd0d86072db88955f1a",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-67000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1168,7 +1168,7 @@
       "name": "village-68000-2026-08-17.geojson",
       "size": 241090,
       "sha256": "e765c04a5f99a4d72c3f5331e3b322790f5c94e4caad382cd9508428ba601ed0",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-68000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-68000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1183,8 +1183,8 @@
       "projection": "compact",
       "name": "village-68000-2026-08-17.svg",
       "size": 113964,
-      "sha256": "6d50a688ab2b0ef0ac7dec340e7917e297b93887e6d0208390dff66b8c18d174",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-68000-2026-08-17.svg"
+      "sha256": "c49e000bb0af19efd883c9150a684749fd2a5742a7a4d5f6dce8c5b7f86638d6",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-68000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1200,7 +1200,7 @@
       "name": "village-10020-2026-08-17.geojson",
       "size": 31959,
       "sha256": "8a0eb3e88f7cccd4a3e358566d5065dc6c9ff3a2d79b3f03e3ff12d43dd93b0a",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10020-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10020-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1215,8 +1215,8 @@
       "projection": "compact",
       "name": "village-10020-2026-08-17.svg",
       "size": 14813,
-      "sha256": "ba02307bf57c8c5265b80f42da1e1af46c0d2eb1881a5cfdc4fa5bbea59b83ab",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10020-2026-08-17.svg"
+      "sha256": "938df663acd913e8aed7990172d592d0492ef060aa8caa351827647cbf7fc2f1",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10020-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1232,7 +1232,7 @@
       "name": "village-10010-2026-08-17.geojson",
       "size": 199244,
       "sha256": "cf65762b79ccb97e88abf064c631cd484955c36b22f15eea72eeaca20645b3c3",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10010-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10010-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1247,8 +1247,8 @@
       "projection": "compact",
       "name": "village-10010-2026-08-17.svg",
       "size": 98035,
-      "sha256": "62ce83b310afcc354d6800f36d7c002f7d11e35811ca64171bf72d3547b14835",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10010-2026-08-17.svg"
+      "sha256": "d66eab4b4d8b1971a6263ed579d278726885e3e62a074cc5ec426a6b278baa4d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10010-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1264,7 +1264,7 @@
       "name": "village-09020-2026-08-17.geojson",
       "size": 20778,
       "sha256": "6de5bba91e4575e8dc77930f865b0e211c10047c903673769d87352d2fe81f90",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-09020-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-09020-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1279,8 +1279,8 @@
       "projection": "compact",
       "name": "village-09020-2026-08-17.svg",
       "size": 10895,
-      "sha256": "f504ffb613e7f50fa283e08de6de84e1a5d634972b647e912d919c65ab400952",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-09020-2026-08-17.svg"
+      "sha256": "fa3d4a2905158dc9697e50d5d84dc1e4cb57a5c19653d8177c51a2b48377445f",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-09020-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1296,7 +1296,7 @@
       "name": "village-64000-2026-08-17.geojson",
       "size": 407344,
       "sha256": "5109e5100cfdd7d6eac776a361fe3ef4c0ee2a33c94d7d55c9b5a4042f535391",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-64000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-64000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1311,8 +1311,8 @@
       "projection": "compact",
       "name": "village-64000-2026-08-17.svg",
       "size": 191466,
-      "sha256": "6029e9fac1e7dbafac4f396b8748af5dc21c93668b3abc034709f162b125980d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-64000-2026-08-17.svg"
+      "sha256": "6ce82e206d2a6a659bd706e86fa99b917c5c0a7063bb26e74a263e2a1142d257",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-64000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1328,7 +1328,7 @@
       "name": "village-10014-2026-08-17.geojson",
       "size": 110891,
       "sha256": "8ade3253400f130bc59116168c5a6bbce739f99cac153f53b6070fd7cafe0c75",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10014-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10014-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1343,8 +1343,8 @@
       "projection": "compact",
       "name": "village-10014-2026-08-17.svg",
       "size": 59518,
-      "sha256": "abc9cf5ca71f60960000ca689c656a993be27c7c4df424065a042e7c493eb8a0",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10014-2026-08-17.svg"
+      "sha256": "3f2a17628692abed65958a0f10b772dd8ebf011f4d5fda97d3690d0237e84c4d",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10014-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1360,7 +1360,7 @@
       "name": "village-10015-2026-08-17.geojson",
       "size": 132155,
       "sha256": "7e6888b6fdaeff130dec912decdec4235e63d269f739a82b4f093ae16abd83fd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10015-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10015-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1375,8 +1375,8 @@
       "projection": "compact",
       "name": "village-10015-2026-08-17.svg",
       "size": 70725,
-      "sha256": "0e846927653c98fca6caa47442368df8625d38df90b0c546cac39afe69d1fe56",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10015-2026-08-17.svg"
+      "sha256": "2ff4605428224ab66dfca2d9e9239aa66153e7eb52705a31a6b2a99724c0c289",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10015-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1392,7 +1392,7 @@
       "name": "village-10016-2026-08-17.geojson",
       "size": 44096,
       "sha256": "08d0153f66b6cddbe71bdd4d3ef4550fccf7e72b20502ad2f0f17251d7471a20",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10016-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10016-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1407,8 +1407,8 @@
       "projection": "compact",
       "name": "village-10016-2026-08-17.svg",
       "size": 20632,
-      "sha256": "c1540b9a67bf4d04ba9fd920baa60ae5b4bc03f81af5866a63c43c4f38248118",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10016-2026-08-17.svg"
+      "sha256": "3ca7ef3cce6f15febf95cf21fcf923634e4af29806d2cd7f986bdf3f64d3d2b5",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10016-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1424,7 +1424,7 @@
       "name": "village-10018-2026-08-17.geojson",
       "size": 49717,
       "sha256": "cb2488c3049f244bb02c4ff4f353181f0d6a9f013fcb4999aa99f9f3789c62cb",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10018-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10018-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1439,8 +1439,8 @@
       "projection": "compact",
       "name": "village-10018-2026-08-17.svg",
       "size": 23161,
-      "sha256": "d6d3eef864c113ade5863b536b8c0cbdc57f0f51ad6afbc1dac7a4b42cfd7510",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10018-2026-08-17.svg"
+      "sha256": "bbd1a88698fdbdb24d4f0810a6afead1f5ea2fce6cb7f8b0a954f1d7c309f435",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10018-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1456,7 +1456,7 @@
       "name": "village-66000-2026-08-17.geojson",
       "size": 284158,
       "sha256": "c2f8d634a3c5a6a7045f778c98949a6e3b705f40b43ad365e4d63e2cbf9fc6dd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-66000-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-66000-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1471,8 +1471,8 @@
       "projection": "compact",
       "name": "village-66000-2026-08-17.svg",
       "size": 133350,
-      "sha256": "457dae65e7f0551f5532088fe91d7b6f70023854cc5367c797298b7088578de5",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-66000-2026-08-17.svg"
+      "sha256": "1fa7ae75a918702022d5617145fc10e71a7469c485da7cb3daeb89863b96e6f8",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-66000-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1488,7 +1488,7 @@
       "name": "village-10005-2026-08-17.geojson",
       "size": 156142,
       "sha256": "885cd9e9c777001b7b83685cadbc4f62c37697f76f19839b83bd09a89f776d7f",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10005-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10005-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1503,8 +1503,8 @@
       "projection": "compact",
       "name": "village-10005-2026-08-17.svg",
       "size": 77534,
-      "sha256": "61a15d5bb3756b1895641b23d474932eac1d4262362a97bf1ccb957d07d6024d",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10005-2026-08-17.svg"
+      "sha256": "db4c3005fb69db49e9c919aec79bd7324af6cbe8afac1fcf06ca1038e204d7b9",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10005-2026-08-17.svg"
     },
     {
       "level": "village",
@@ -1520,7 +1520,7 @@
       "name": "village-10004-2026-08-17.geojson",
       "size": 110588,
       "sha256": "5f4392e075417606c8fecc4837ce71538426167079e15735fe815b32ec34ccd8",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10004-2026-08-17.geojson"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10004-2026-08-17.geojson"
     },
     {
       "level": "village",
@@ -1535,8 +1535,8 @@
       "projection": "compact",
       "name": "village-10004-2026-08-17.svg",
       "size": 55478,
-      "sha256": "57b422965bae66e83e344f89d6e6c96eff8e04cf46c6394c5d2ffc60f3373dd4",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/village-10004-2026-08-17.svg"
+      "sha256": "3c013c288425d09845618341b21bee222319ffd77fbc67a841d808b8a212e569",
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/village-10004-2026-08-17.svg"
     },
     {
       "level": "all",
@@ -1552,7 +1552,7 @@
       "name": "regions-2026-08-17.csv",
       "size": 859327,
       "sha256": "ec442ae7cf4a8d379db4b1554677c18b7d2671ea25d2f6669c5f3a0fc1fca5cd",
-      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.5.0/regions-2026-08-17.csv"
+      "url": "https://github.com/plotdb/pdmaptw/releases/download/v2.6.0/regions-2026-08-17.csv"
     }
   ]
 }

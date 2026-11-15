@@ -1,5 +1,15 @@
 # Change Logs
 
+## v2.6.0
+
+ - town files ( `town.map.js`, `county/<縣市名>.map.js` ) carry a second object,
+   `topo.objects.county`: the counties merged from their towns, sharing the towns' arcs, the
+   same way village files carry the towns since 2.5.0. `objects.pdmaptw` is unchanged; town
+   files grow about 4%.
+ - 4 coastal towns in 臺東縣 come out slightly different, for the same reason as the villages
+   in 2.5.0 ( the counties are in the topology when it is simplified ).
+ - `verify.ls` checks the county object the same way as the town object.
+
 ## v2.5.0
 
  - village files ( `village.map.js`, `county/<縣市名>.village.map.js` ) carry a second

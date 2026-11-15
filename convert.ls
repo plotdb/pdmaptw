@@ -136,32 +136,33 @@ proc = (lv) ->
           lat: +lat.to-fixed 6
       fs.write-file-sync "src/topojson/#lv.stat.json", JSON.stringify(stat)
 
-      # village files also carry the towns, merged from their villages ( object `town` ). the
-      # town level file is drawn from a different shapefile and simplified on its own, so its
-      # boundaries never line up with the villages. these are merged from the source geometry
-      # and built into the same topology, so they are made of the very same arcs as the villages
-      # and still line up after simplification.
+      # each level's file also carries the level above it, merged from its own regions: village
+      # files carry the towns ( object `town` ), town files the counties ( object `county` ). the
+      # upper level files are drawn from different shapefiles and simplified on their own, so
+      # their boundaries never line up with the level below. these are merged from the source
+      # geometry and built into the same topology, so they are made of the very same arcs and
+      # still line up after simplification.
       # the merge has to happen before quantization: at 1e5 the shared edges of neighbouring
       # villages no longer match everywhere, and about a third of the merged towns come out as
-      # rings broken into open pieces. on the source coordinates every ring closes. one town at
-      # a time keeps the unquantized topology small.
+      # rings broken into open pieces. on the source coordinates every ring closes. one region
+      # at a time keeps the unquantized topology small.
       objs = {pdmaptw: divisions}
-      if lv == \village =>
+      upper = {village: {name: \town, len: 8, keys: <[c t]>}, town: {name: \county, len: 5, keys: <[c]>}}[lv]
+      if upper =>
         groups = {}
         for f in divisions.features
           if !(f.geometry and f.properties.code) => continue
-          (groups[f.properties.code.substring(0, 8)] ||= []).push f
-        objs.town =
+          (groups[f.properties.code.substring(0, upper.len)] ||= []).push f
+        objs[upper.name] =
           type: \FeatureCollection
           features: [k for k of groups].sort!map (code) ->
             fs = groups[code]
             # topology() rewrites the geometries it is given in place. work on a copy
             t = topojson.topology {v: {type: \FeatureCollection, features: JSON.parse(JSON.stringify fs)}}
-            {
-              type: \Feature
-              properties: {c: fs.0.properties.c, t: fs.0.properties.t, code}
-              geometry: topojson.merge t, t.objects.v.geometries
-            }
+            properties = {}
+            for k in upper.keys => properties[k] = fs.0.properties[k]
+            properties.code = code
+            {type: \Feature, properties, geometry: topojson.merge(t, t.objects.v.geometries)}
       topo = topojson.topology objs, 1e5
       topo = topojson.presimplify topo
       topo = topojson.simplify(topojson.filter(topo,topojson.filterWeight(topo,opt.mw[lv])), opt.w[lv])
